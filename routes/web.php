@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Vehiculo
+Route::get('/cars/register', [App\Http\Controllers\CarController::class, 'create'])->name('create');
+Route::post('/cars/save', [App\Http\Controllers\CarController::class, 'save'])->name('car.save');

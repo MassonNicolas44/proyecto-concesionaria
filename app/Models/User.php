@@ -22,6 +22,8 @@ class User extends Authenticatable
         'surname',
         'email',
         'password',
+        'rol',
+        'image',
     ];
 
     /**
@@ -43,4 +45,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    //Relacion de uno a muchos
+    public function sale()
+    {
+        return $this->HasMany('App\Models\Sale');
+    }
+
 }
