@@ -5,8 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Car extends Model
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
+
+class Car extends Model implements HasMedia
 {
+
+    use HasFactory;
+    use InteractsWithMedia;
 
     protected $table = 'cars';
 
@@ -24,11 +31,19 @@ class Car extends Model
     }
 
 
+
+
     //Relacion de uno a muchos
     public function sale()
     {
         return $this->HasMany('App\Models\Sale');
     }
 
-    use HasFactory;
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('thumb')
+            ->width(800)
+            ->height(800)
+            ->sharpen(10);
+    }
 }

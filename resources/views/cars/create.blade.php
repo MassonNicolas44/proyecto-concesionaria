@@ -15,7 +15,7 @@
                             <label for="brand_id" class="col-md-4 col-form-label text-md-end">{{ __('Marca') }}</label>
 
                             <div class="col-md-6">
-                                <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id" required/>
+                                <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id" />
                                 <option value="">-- Escoja la marca --</option>
                                     @foreach ($brands as $brand)
                                         <option value="{{ $brand['id'] }}">
@@ -36,8 +36,7 @@
                             <label for="engine_id" class="col-md-4 col-form-label text-md-end">{{ __('Motor') }}</label>
 
                             <div class="col-md-6">
-                                <select id="engine_id" type="text" class="form-control {{ $errors->has('engine_id') ? 'is-invalid' : '' }}" value="{{ old('engine_id') }}" name="engine_id" required/>
-
+                                <select id="engine_id" type="text" class="form-control {{ $errors->has('engine_id') ? 'is-invalid' : '' }}" value="{{ old('engine_id') }}" name="engine_id" />
 
                                 <option value="">-- Escoja el tipo de motor --</option>
                                     @foreach ($engines as $engine)
@@ -59,7 +58,7 @@
                             <label for="model" class="col-md-4 col-form-label text-md-end">{{ __('Modelo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value="{{ old('model') }}" name="model" required/>
+                                <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value="{{ old('model') }}" name="model" />
 
                                 @if ($errors->has('model'))
                             <span class="invalid-feedback" role="alert">
@@ -73,7 +72,7 @@
                             <label for="year" class="col-md-4 col-form-label text-md-end">{{ __('Año') }}</label>
 
                             <div class="col-md-6">
-                                <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ old('year') }}" name="year" required/>
+                                <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ old('year') }}" name="year" />
 
                                 @if ($errors->has('year'))
                             <span class="invalid-feedback" role="alert">
@@ -87,7 +86,7 @@
                             <label for="color" class="col-md-4 col-form-label text-md-end">{{ __('Color') }}</label>
 
                             <div class="col-md-6">
-                                <input id="color" type="text" class="form-control {{ $errors->has('color') ? 'is-invalid' : '' }}" value="{{ old('color') }}" name="color" required/>
+                                <input id="color" type="text" class="form-control {{ $errors->has('color') ? 'is-invalid' : '' }}" value="{{ old('color') }}" name="color" />
 
                                 @if ($errors->has('color'))
                                     <span class="invalid-feedback" role="alert">
@@ -101,7 +100,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion / Detalles') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" type="textarea" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') }}" name="description" required/></textarea>
+                                <textarea id="description" type="textarea" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') }}" name="description" /></textarea>
 
 
                                 @if ($errors->has('description'))
@@ -116,7 +115,7 @@
                             <label for="engine_id" class="col-md-4 col-form-label text-md-end">{{ __('Cantidad de Puertas') }}</label>
 
                             <div class="col-md-6">
-                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ old('door') }}" name="door" required/>
+                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ old('door') }}" name="door" />
 
 
                                 <option value="">-- Escoja la cantidad de puertas --</option>
@@ -140,7 +139,7 @@
                             <label for="stock" class="col-md-4 col-form-label text-md-end">{{ __('Stock') }}</label>
 
                             <div class="col-md-6">
-                                <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ old('stock') }}" name="stock" required/>
+                                <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ old('stock') }}" name="stock" />
 
                                 @if ($errors->has('stock'))
                             <span class="invalid-feedback" role="alert">
@@ -155,7 +154,7 @@
                             <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Precio (Dolares)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ old('price') }} Dolares" name="price" required/>
+                                <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ old('price') }}" name="price" />
 
                                 @if ($errors->has('price'))
                             <span class="invalid-feedback" role="alert">
@@ -165,12 +164,10 @@
                             </div>
                         </div>
 
-
-
                         <div class="row mb-3">
                             <label for="image" class="col-md-2 col-form-label text-md-right">Imagen</label>
                                 <div class="col-md-9">
-                                    <input id="image" type="file" name="image" class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} " required/>
+                                    <input id="image" type="file" name="image[]" multiple class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} " />
                                      @if ($errors->has('image'))
                                         <span class="invalid-feeback" role="alert">
                                             <strong> {{$errors->first('image')}} </strong>
