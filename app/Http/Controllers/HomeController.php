@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
 
-        $imagesCar=Car::orderBy('id','desc')->paginate(2);
+        $imagesCar=Car::orderBy('id','desc')->paginate(5);
 
         return view('home',['imagesCar'=>$imagesCar]);
     }

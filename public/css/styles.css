@@ -11,6 +11,31 @@
     border: 1px solid #000;
 }
 
+.imageDelete{
+    display:block;
+    justify-content: center;
+    text-align: center;
+}
+
+.homeButton{
+    display:flex;
+    justify-content: center;
+    padding:10px;
+    margin:5px;
+}
+
+.homeButton1{
+    margin-right:25px;
+}
+
+.homeButton2{
+    margin-right:25px;
+}
+
+.homeButton3{
+    margin-right:25px;
+}
+
 .foreachImage{
     display:flex;
     justify-content: center;

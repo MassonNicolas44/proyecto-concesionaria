@@ -7,6 +7,9 @@
             <div class="card">
                 <div class="card-header">{{ __('Ingresar') }}</div>
 
+                Email: admin@hotmail.com
+Contraseña: 12345678
+
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

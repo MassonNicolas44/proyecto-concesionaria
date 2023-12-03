@@ -5,22 +5,28 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Ingresar Vehiculo') }}</div>
+                <div class="card-header">{{ __('Editar Vehiculo') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" enctype="multipart/form-data" action="{{ route('car.save') }}">
+                    <form method="POST" enctype="multipart/form-data" action="{{ route('car.update') }}">
                         @csrf
+
+                        <input type="hidden" name="idCar" value="{{$cars->id}}"/>
 
                         <div class="row mb-3">
                             <label for="brand_id" class="col-md-4 col-form-label text-md-end">{{ __('Marca') }}</label>
 
                             <div class="col-md-6">
-                                <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id" required/>
+                                <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ $brandsCar->id }}" name="brand_id" required/>
                                 <option value="">-- Escoja la marca --</option>
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand['id'] }}">
-                                            {{$brand['descripcion']}}
-                                        </option>
+                                                  
+                                        @if( $brandsCar->id == $brand['id'] )
+                                            <option  selected="selected" value="{{ $brand['id'] }}">{{$brandsCar->descripcion}}</option>
+                                        @else
+                                            <option value="{{ $brand['id'] }}">{{$brand['descripcion']}}</option>
+                                        @endif
+                            
                                     @endforeach
                                 </select>
 
@@ -36,13 +42,17 @@
                             <label for="engine_id" class="col-md-4 col-form-label text-md-end">{{ __('Motor') }}</label>
 
                             <div class="col-md-6">
-                                <select id="engine_id" type="text" class="form-control {{ $errors->has('engine_id') ? 'is-invalid' : '' }}" value="{{ old('engine_id') }}" name="engine_id" required/>
+                                <select id="engine_id" type="text" class="form-control {{ $errors->has('engine_id') ? 'is-invalid' : '' }}" value=" {{  $enginesCar->id }} " name="engine_id" required/>
 
                                 <option value="">-- Escoja el tipo de motor --</option>
                                     @foreach ($engines as $engine)
-                                        <option value="{{ $engine['id'] }}">
-                                            {{$engine['descripcion']}}
-                                        </option>
+
+                                        @if( $enginesCar->id == $engine['id'] )
+                                            <option  selected="selected" value="{{ $engine['id'] }}">{{$enginesCar->descripcion}}</option>
+                                        @else
+                                            <option value="{{ $engine['id'] }}">{{$engine['descripcion']}}</option>
+                                        @endif
+
                                     @endforeach
                                 </select>
 
@@ -58,7 +68,7 @@
                             <label for="model" class="col-md-4 col-form-label text-md-end">{{ __('Modelo') }}</label>
 
                             <div class="col-md-6">
-                                <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value="{{ old('model') }}" name="model" required/>
+                                <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value="{{ $cars->model }}" name="model" required/>
 
                                 @if ($errors->has('model'))
                             <span class="invalid-feedback" role="alert">
@@ -72,7 +82,7 @@
                             <label for="year" class="col-md-4 col-form-label text-md-end">{{ __('Año') }}</label>
 
                             <div class="col-md-6">
-                                <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ old('year') }}" name="year" required/>
+                                <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ $cars->year }}" name="year" required/>
 
                                 @if ($errors->has('year'))
                             <span class="invalid-feedback" role="alert">
@@ -86,7 +96,7 @@
                             <label for="color" class="col-md-4 col-form-label text-md-end">{{ __('Color') }}</label>
 
                             <div class="col-md-6">
-                                <input id="color" type="text" class="form-control {{ $errors->has('color') ? 'is-invalid' : '' }}" value="{{ old('color') }}" name="color" required/>
+                                <input id="color" type="text" class="form-control {{ $errors->has('color') ? 'is-invalid' : '' }}" value="{{ $cars->color }}" name="color" required/>
 
                                 @if ($errors->has('color'))
                                     <span class="invalid-feedback" role="alert">
@@ -100,7 +110,7 @@
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion / Detalles') }}</label>
 
                             <div class="col-md-6">
-                                <textarea id="description" type="textarea" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') }}" name="description" required/></textarea>
+                                <textarea id="description" type="textarea" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') }}" name="description" required/> {{ $cars->description }} </textarea>
 
 
                                 @if ($errors->has('description'))
@@ -115,18 +125,21 @@
                             <label for="door" class="col-md-4 col-form-label text-md-end">{{ __('Cantidad de Puertas') }}</label>
 
                             <div class="col-md-6">
-                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ old('door') }}" name="door" required/>
-
-
-                                <option value="">-- Escoja la cantidad de puertas --</option>
+                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ $cars->door }}" name="door" required/>
+          
+                                        <option value="">-- Escoja la cantidad de puertas --</option>
                                         
                                         <?php 
                                             $CantPuertas=["Menos de 2 Puertas","2 Puertas","3 Puertas","4 Puertas","5 Puertas","Mas de 5 Puertas"];
                                         ?>
 
                                         @foreach ($CantPuertas as $CantPuerta)
-   
-                                            <option value=" {{ $CantPuerta }} "> {{ $CantPuerta }}  </option>
+
+                                            @if ($cars->door == $CantPuerta)
+                                                <option selected value="{{ $CantPuerta }}"> {{ $CantPuerta }}  </option>
+                                            @else
+                                                <option value=" {{ $CantPuerta }} "> {{ $CantPuerta }}  </option>
+                                            @endif
 
                                         @endforeach
 
@@ -144,7 +157,7 @@
                             <label for="stock" class="col-md-4 col-form-label text-md-end">{{ __('Stock') }}</label>
 
                             <div class="col-md-6">
-                                <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ old('stock') }}" name="stock" required/>
+                                <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ $cars->stock }}" name="stock" required/>
 
                                 @if ($errors->has('stock'))
                             <span class="invalid-feedback" role="alert">
@@ -159,13 +172,33 @@
                             <label for="price" class="col-md-4 col-form-label text-md-end">{{ __('Precio (Dolares)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ old('price') }}" name="price" required/>
+                                <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ $cars->price }}" name="price" required/>
 
                                 @if ($errors->has('price'))
                             <span class="invalid-feedback" role="alert">
                                 <strong> {{$errors->first('price')}} </strong>
                             </span>
                         @endif
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="option_Image" class="col-md-4 col-form-label text-md-end">{{ __('Opcion de Imagen') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="option_Image" type="text" class="form-control {{ $errors->has('option_Imaged') ? 'is-invalid' : '' }}" value="" name="option_Image" required/>
+          
+                                        <option value="">-- Escoja la opcion de imagen --</option>
+                                        <option value="Actualizar"> Actualizar Fotos </option>
+                                        <option value="Eliminar"> Eliminar Fotos Anteriores </option>
+
+                                </select>
+
+                                @if ($errors->has('option_Image'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('option_Image')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -184,7 +217,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <input type="submit" class="btn btn-primary" value="Subir Vehiculo">
+                                <input type="submit" class="btn btn-primary" value="Editar Vehiculo">
                                 </button>
                             </div>
                         </div>

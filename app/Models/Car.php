@@ -30,9 +30,6 @@ class Car extends Model implements HasMedia
         return $this->belongsTo('App\Models\Brand', 'brand_id');
     }
 
-
-
-
     //Relacion de uno a muchos
     public function sale()
     {
@@ -42,8 +39,6 @@ class Car extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion('thumb')
-            ->width(800)
-            ->height(800)
-            ->sharpen(10);
+        ->sharpen(10);
     }
 }
