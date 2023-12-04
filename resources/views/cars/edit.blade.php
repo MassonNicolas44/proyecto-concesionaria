@@ -159,7 +159,7 @@
                             <div class="col-md-6">
                                 <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ $cars->stock }}" name="stock" required/>
 
-                                @if ($errors->has('stock'))
+                        @if ($errors->has('stock'))
                             <span class="invalid-feedback" role="alert">
                                 <strong> {{$errors->first('stock')}} </strong>
                             </span>

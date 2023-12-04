@@ -35,4 +35,8 @@ Route::get('/cars/delete/{id}', [App\Http\Controllers\CarController::class, 'del
 Route::get('/cars/file/{filename}', [App\Http\Controllers\CarController::class, 'getImage'])->name('car.file');
 
 //Imagen
-Route::get('/cars/deleteImg/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('car.deleteImg');
+Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('car.deleteImg');
+
+//Usuario
+Route::get('/user/config', [App\Http\Controllers\UserController::class, 'config'])->name('user.config');
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');

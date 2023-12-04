@@ -9,6 +9,11 @@
                 <div class="card-header">
           
                     <div class="container-avatar">
+                        @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                         </hr>
                         <p class="nickname"> {{ $imageCar->brand->descripcion . ' '.$imageCar->model . '
                             '.$imageCar->year}} </p>
@@ -44,36 +49,7 @@
                                 <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
                                     <img style="width: 150px;" alt="" src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
                                 </a>
-            
-
-                            @if(!empty($img))
-                                <div class="actions_delete">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar Foto</button>
-
-                                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro de realizar esta accion?</h5>
-                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Al eliminar la foto del vehiculo, no se puede recuperar. ¿Quiere continuar?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                                                    <a href="{{ route('car.deleteImg',['idImg'=>$idImg]) }}" class="btn  btn-danger">Borrar</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @else
-                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" disabled data-bs-target="#exampleModal">Seleccione Foto</button>
-                                @endif
-  
+                                <a href="{{ route('car.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
                             </div>
 
                         @endforeach

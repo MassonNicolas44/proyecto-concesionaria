@@ -5,7 +5,7 @@
             
     <div class="card-body">
         <div class="image-container-home">
-
+            <!-- En caso que no existe imagen del vehiculo, se muestra una imagen con el cartel de "No image" -->
             @if(!empty($imageCar->media->first()))
                 <img src="{{ $imageCar->media->first()->getUrl('thumb') }}" width="600px" height ="450px">
             @else
@@ -25,29 +25,9 @@
             </div>
             </br>
             <div class="homeButton3">
-                <div class="actions_delete">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">Eliminar Vehiculo</button>
 
-                                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">¿Estas seguro de realizar esta accion?</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Al eliminar el vehiculo, no se puede recuperar. ¿Quiere continuar?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancelar</button>
-                                    <a href="{{ route('car.delete',['id'=>$imageCar->id]) }}" class="btn  btn-danger">Borrar</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <a href="{{ route('car.delete',['id'=>$imageCar->id]) }}"="sucess" class="btn  btn-danger btn-sm">Eliminar Vehiculo</a>
+
             </div>
         </div>
 

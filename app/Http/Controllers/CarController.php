@@ -160,28 +160,26 @@ class CarController extends Controller
     $car->update();
 
     //Redireccion de la pagina
-    return redirect()->route('home')->with(['message' => 'El Vehiculo se ha editado correctamente']);
+    return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'El Vehiculo se ha editado correctamente']);
 
     }
 
     public function delete($id)
     {
         // Conseguir el objeto image
-        $car = Car::find($id);
-
-        $car->delete();
+        Car::with(['media'])->find($id)->delete();
 
         //Redireccion de la pagina
         return redirect()->route('home')->with(['message' => 'El Vehiculo se ha eliminado correctamente']);
     }
 
-    public function deleteImg($idImg)
+    public function deleteImg($id,$idImg)
     {
         // Conseguir el objeto image
-        Media::where('id',$idImg)->delete();
+        Media::find($idImg)->delete();
 
         //Redireccion de la pagina
-        return redirect()->route('home')->with(['message' => 'La foto se ha eliminado correctamente']);
+        return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'La foto se ha eliminado correctamente']);
     }
 
     public function detail($id,$idImg=null,$img=null)
