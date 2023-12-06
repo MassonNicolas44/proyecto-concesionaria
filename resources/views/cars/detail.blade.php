@@ -8,12 +8,6 @@
             <div class="card pub_image">
                 <div class="card-header">
           
-                    <div class="container-avatar">
-                        @if (session('message'))
-                            <div class="alert alert-success">
-                                {{ session('message') }}
-                            </div>
-                        @endif
                         </hr>
                         <p class="nickname"> {{ $imageCar->brand->descripcion . ' '.$imageCar->model . '
                             '.$imageCar->year}} </p>
@@ -49,7 +43,7 @@
                                 <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
                                     <img style="width: 150px;" alt="" src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
                                 </a>
-                                <a href="{{ route('car.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
+                                <a href="{{ route('image.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
                             </div>
 
                         @endforeach
@@ -57,7 +51,7 @@
                     </div>
                      <div class="description">
                         <ul> 
-                            <li> <b> {{'Tipo de Motor:'}} </b> {{ $imageCar->engine->descripcion }} </li>
+                            <li> <b> {{'Tipo de Motor:'}} </b> {{ $imageCar->engine->description }} </li>
                             <li> <b> {{ 'Color: ' }} </b> {{ $imageCar->color }} </li>
                             <li> <b> {{ 'Cantidad de puertas: '}} </b> {{ $imageCar->door }} </li>
                             <li> <b> {{ 'Descripcion / Detalles: '}} </b> {{ $imageCar->description }} </li>

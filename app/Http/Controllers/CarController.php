@@ -27,8 +27,8 @@ class CarController extends Controller
     public function create()
     {
         //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
-        $brands=Brand::all();
-        $engines=Engine::all();    
+        $brands=Brand::orderBy('name','asc')->get();
+        $engines=Engine::orderBy('description','asc')->get();    
         return view('cars.create',compact('brands','engines'));
     }
 
@@ -36,8 +36,8 @@ class CarController extends Controller
     {
         //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
         $cars=Car::find($id);
-        $brands=Brand::all();
-        $engines=Engine::all(); 
+        $brands=Brand::orderBy('name','asc')->get();
+        $engines=Engine::orderBy('description','asc')->get(); 
 
         $brandsCar=Brand::find($cars->brand_id);
         $enginesCar=Engine::find($cars->engine_id); 

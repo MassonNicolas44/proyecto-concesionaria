@@ -7,6 +7,13 @@
             <div class="card">
                 <div class="card-header">{{ __('Editar Vehiculo') }}</div>
 
+                <div class="container-avatar">
+                        @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('car.update') }}">
                         @csrf
@@ -22,9 +29,9 @@
                                     @foreach ($brands as $brand)
                                                   
                                         @if( $brandsCar->id == $brand['id'] )
-                                            <option  selected="selected" value="{{ $brand['id'] }}">{{$brandsCar->descripcion}}</option>
+                                            <option  selected="selected" value="{{ $brand['id'] }}">{{$brandsCar->name}}</option>
                                         @else
-                                            <option value="{{ $brand['id'] }}">{{$brand['descripcion']}}</option>
+                                            <option value="{{ $brand['id'] }}">{{$brand['name']}}</option>
                                         @endif
                             
                                     @endforeach
@@ -48,9 +55,9 @@
                                     @foreach ($engines as $engine)
 
                                         @if( $enginesCar->id == $engine['id'] )
-                                            <option  selected="selected" value="{{ $engine['id'] }}">{{$enginesCar->descripcion}}</option>
+                                            <option  selected="selected" value="{{ $engine['id'] }}">{{$enginesCar->description}}</option>
                                         @else
-                                            <option value="{{ $engine['id'] }}">{{$engine['descripcion']}}</option>
+                                            <option value="{{ $engine['id'] }}">{{$engine['description']}}</option>
                                         @endif
 
                                     @endforeach

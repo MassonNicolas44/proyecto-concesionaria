@@ -60,11 +60,19 @@
                             <a class="nav-link" href=" {{ route('home')}} ">Inicio | </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('create')}} ">Ingresar Vehiculo | </a>
+                            <a class="nav-link" href=" {{ route('car.create')}} ">Ingresar Vehiculo | </a>
                         </li>
 
-                            <li class="nav-item dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('brand.config')}} ">Marca Vehiculo | </a>
+                        </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" href=" {{ route('engine.config')}} ">Tipo de Motor Vehiculo | </a>
+                        </li>
+
+
+                            <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}

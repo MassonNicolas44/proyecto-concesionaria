@@ -7,6 +7,13 @@
             <div class="card">
                 <div class="card-header">{{ __('Ingresar Vehiculo') }}</div>
 
+                <div class="container-avatar">
+                        @if (session('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('car.save') }}">
                         @csrf
@@ -19,7 +26,7 @@
                                 <option value="">-- Escoja la marca --</option>
                                     @foreach ($brands as $brand)
                                         <option value="{{ $brand['id'] }}">
-                                            {{$brand['descripcion']}}
+                                            {{$brand['name']}}
                                         </option>
                                     @endforeach
                                 </select>
@@ -41,7 +48,7 @@
                                 <option value="">-- Escoja el tipo de motor --</option>
                                     @foreach ($engines as $engine)
                                         <option value="{{ $engine['id'] }}">
-                                            {{$engine['descripcion']}}
+                                            {{$engine['description']}}
                                         </option>
                                     @endforeach
                                 </select>
