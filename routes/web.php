@@ -50,3 +50,7 @@ Route::post('/brand/update', [App\Http\Controllers\BrandController::class, 'upda
 Route::get('/engine/config', [App\Http\Controllers\EngineController::class, 'config'])->name('engine.config');
 Route::post('/engine/save', [App\Http\Controllers\EngineController::class, 'save'])->name('engine.save');
 Route::post('/engine/update', [App\Http\Controllers\EngineController::class, 'update'])->name('engine.update');
+
+//Venta
+Route::get('/sale/register/{id}', [App\Http\Controllers\SaleController::class, 'create'])->name('sale.create');
+Route::post('/sale/save', [App\Http\Controllers\SaleController::class, 'save'])->name('sale.save');

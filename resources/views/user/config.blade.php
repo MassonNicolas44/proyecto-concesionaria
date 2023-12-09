@@ -5,14 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Editar Usuario') }}</div>
-
+                
+            <div class="container-avatar">
                 @if (session('message'))
                     <div class="alert alert-success">
                         {{ session('message') }}
                     </div>
+       
                 @endif
+            </div>
 
+                <div class="card-header">{{ __('Editar Usuario') }}</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('user.update') }}">
                         @csrf

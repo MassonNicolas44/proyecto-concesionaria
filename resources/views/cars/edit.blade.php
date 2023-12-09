@@ -5,15 +5,17 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+
+            <div class="container-avatar">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+       
+                @endif
+            </div>
+
                 <div class="card-header">{{ __('Editar Vehiculo') }}</div>
-
-                <div class="container-avatar">
-                        @if (session('message'))
-                            <div class="alert alert-success">
-                                {{ session('message') }}
-                            </div>
-                        @endif
-
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('car.update') }}">
                         @csrf
@@ -224,7 +226,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <input type="submit" class="btn btn-primary" value="Editar Vehiculo">
+                                <input type="submit" class="btn btn-primary" value="Editar">
                                 </button>
                             </div>
                         </div>
