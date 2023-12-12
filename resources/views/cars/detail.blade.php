@@ -43,7 +43,9 @@
                                 <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
                                     <img style="width: 150px;" alt="" src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
                                 </a>
-                                <a href="{{ route('image.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
+                                @if(Auth::user())
+                                    <a href="{{ route('image.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
+                                @endif
                             </div>
 
                         @endforeach

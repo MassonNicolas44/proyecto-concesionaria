@@ -14,10 +14,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CarController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
 
     /**
      * Show the application dashboard.

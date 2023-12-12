@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-.homeButton{
+.homeButtonAdmin{
     display:flex;
     justify-content: center;
     padding:10px;
@@ -32,12 +32,46 @@
     margin-right:25px;
 }
 
-.homeButton3{
+.homeButton3 .btn{
     margin-right:25px;
 }
 
 .homeButton4{
     margin-right:25px;
+}
+
+.homeButton5{
+    margin-right:25px;
+}
+
+.homeButtonHome{
+    display:flex;
+    justify-content: space-between;
+    padding:10px;
+    margin:5px;
+}
+
+.homeButton6 .btn{
+    display:flex;
+    justify-content: center;
+    width: 65%;
+    padding:10px;
+    margin:15px;
+    margin-left:17%;
+    font-size: 20px;
+}
+
+.homeButton7 .btn{
+    width: 155%;
+    font-size: 20px;
+    margin-left:70%;
+}
+
+.homeButton8 .btn{
+    width: 210%;
+    cursor: not-allowed;
+    font-size: 20px;
+    margin-left:-185%;
 }
 
 .foreachImage{

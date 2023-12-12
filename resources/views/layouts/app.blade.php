@@ -44,31 +44,62 @@
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
                         @guest
+
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                            </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Ingresar') }}</a>
                                 </li>
                             @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                                </li>
-                            @endif
+     
                         @else
                         <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('home')}} ">Inicio | </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('car.create')}} ">Ingresar Vehiculo | </a>
+                            <a class="nav-link" href=" {{ route('home')}} ">Inicio </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('brand.config')}} ">Marca Vehiculo | </a>
+                        <li class="nav-item dropdown">
+                            
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Vehiculo
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" >
+                                    <a class="nav-link" href=" {{ route('car.create')}} ">Ingresar</a>
+                                </a>
+                                <a class="dropdown-item" >
+                                    <a class="nav-link" href=" {{ route('brand.config')}} ">Marca</a>
+                                </a>
+                                <a class="dropdown-item" >
+                                    <a class="nav-link" href=" {{ route('engine.config')}} ">Tipo de Motor</a>
+                                </a>
+                            </div>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href=" {{ route('engine.config')}} ">Tipo de Motor Vehiculo | </a>
+                        <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Clientes
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href="{{ route('register') }}">Ingresar</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href="">Modificar</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href="">Eliminar</a>
+                                </a>
+
+                            </div>
+
                         </li>
 
                         <li class="nav-item dropdown">
@@ -79,7 +110,7 @@
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                <a class="dropdown-item" ">
+                                <a class="dropdown-item">
                                     {{ __('Editar') }}
                                 </a>
 

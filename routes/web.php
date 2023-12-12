@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
@@ -38,7 +38,7 @@ Route::get('/cars/file/{filename}', [App\Http\Controllers\CarController::class, 
 Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('image.deleteImg');
 
 //Usuario
-Route::get('/user/config', [App\Http\Controllers\UserController::class, 'user.config'])->name('user.config');
+Route::get('/user/config', [App\Http\Controllers\UserController::class, 'config'])->name('user.config');
 Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
 
 //Marca
