@@ -43,6 +43,13 @@
     margin-left:-145%;
 }
 
+.homeButton4 .btn{
+    width: 260%;
+    cursor: not-allowed;
+    font-size: 20px;
+    margin-left:-260%;
+}
+
 
 .foreachImage{
     display:flex;

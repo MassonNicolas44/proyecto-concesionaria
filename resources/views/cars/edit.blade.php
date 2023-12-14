@@ -195,7 +195,7 @@
                             <label for="option_Image" class="col-md-4 col-form-label text-md-end">{{ __('Opcion de Imagen') }}</label>
 
                             <div class="col-md-6">
-                                <select id="option_Image" type="text" class="form-control {{ $errors->has('option_Imaged') ? 'is-invalid' : '' }}" value="" name="option_Image" required/>
+                                <select id="option_Image" type="text" class="form-control {{ $errors->has('option_Imaged') ? 'is-invalid' : '' }}" value="" name="option_Image"/>
           
                                         <option value="">-- Escoja la opcion de imagen --</option>
                                         <option value="Actualizar"> Actualizar Fotos </option>

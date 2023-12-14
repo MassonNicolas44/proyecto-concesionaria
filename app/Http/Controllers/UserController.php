@@ -105,10 +105,25 @@ class UserController extends Controller
 
     }
 
-    public function list(){
+    public function list($id=null,$status=null){
+
+
+        if($id!=null && $status!=null){
+            
+            $user = User::find($id);
+
+            if($status=="Deshabilitado"){
+                $user->status='Deshabilitado';
+            }else{
+                $user->status='Habilitado';
+            }
+
+            $user->update();
+        }
 
         //Trae la tabla de Usuarios y la pasa por el View
-        $users=User::orderBy('name','asc')->get(); 
+        $users=User::where('rol','LIKE','Cliente')
+        ->orderBy('name','asc')->get(); 
         return view('user.list',['users'=>$users]);
     }
 }

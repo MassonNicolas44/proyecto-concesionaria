@@ -30,6 +30,7 @@
                                     <th>Cant Puerta</th>
                                     <th>Stock</th>
                                     <th>Precio</th>
+                                    <th>Estado</th>
                                     <th>Accion</th>
                                 </thead>
 
@@ -46,10 +47,16 @@
                                             <td>{{$car->door}}</td>
                                             <td>{{$car->stock}}</td>
                                             <td>{{$car->price}}</td>
+                                            <td>{{$car->status}}</td>
                                             <td>
                                                 <div class="list">
-                                                <a href="{{ route('car.edit',['id'=>$car->id]) }}" ="sucess" class="btn btn-warning btn-sm"> Editar</a>
-                                                <a href="{{ route('car.delete',['id'=>$car->id]) }}"="sucess" class="btn  btn-danger btn-sm">Eliminar</a>
+                                                    @if($car->status=="Habilitado")
+                                                        <a href="{{ route('car.list',['id'=>$car->id,'status'=>'Deshabilitado']) }}" ="sucess" class="btn btn-danger btn-sm"> Deshabilitar</a>
+                                                    @else
+                                                        <a href="{{ route('car.list',['id'=>$car->id,'status'=>'Habilitado']) }}" ="sucess" class="btn btn-success btn-sm"> Habilitar</a>
+                                                    @endif
+                                                    <a href="{{ route('car.edit',['id'=>$car->id]) }}" ="sucess" class="btn btn-warning btn-sm"> Editar</a>
+                                                    <a href="{{ route('car.delete',['id'=>$car->id]) }}"="sucess" class="btn  btn-danger btn-sm">Eliminar</a>
                                                 </div>
                                             </td>
                                         </tr>

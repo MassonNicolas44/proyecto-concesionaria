@@ -28,6 +28,7 @@
                                     <th>CP</th>
                                     <th>Ciudad</th>
                                     <th>Provincia</th>
+                                    <th>Estado</th>
                                     <th>Acción</th>
                                 </thead>
 
@@ -42,8 +43,14 @@
                                             <td>{{$user->postalCode}}</td>
                                             <td>{{$user->city}}</td>
                                             <td>{{$user->province}}</td>
+                                            <td>{{$user->status}}</td>
                                             <td>
                                                 <div class="listUser">
+                                                    @if($user->status=="Habilitado")
+                                                        <a href="{{ route('user.list',['id'=>$user->id,'status'=>'Deshabilitado']) }}" ="sucess" class="btn btn-danger btn-sm"> Deshabilitar</a>
+                                                    @else
+                                                        <a href="{{ route('user.list',['id'=>$user->id,'status'=>'Habilitado']) }}" ="sucess" class="btn btn-success btn-sm"> Habilitar</a>
+                                                    @endif
                                                     <a href="{{ route('user.editUser',['id'=>$user->id]) }}" class="btn btn-warning btn-sm"> Editar </a>
                                                     <a href="" class="btn btn-danger btn-sm"> Eliminar </a>
                                                 </div>

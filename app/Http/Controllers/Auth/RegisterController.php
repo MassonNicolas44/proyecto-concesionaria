@@ -24,6 +24,11 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Where to redirect users after registration.
      *
@@ -77,6 +82,7 @@ class RegisterController extends Controller
             'province' => $data['province'],
             'password' => 'null',
             'rol' => 'Cliente',
+            'status' => 'Habilitado',
             'image' => 'null',
         ]);
     }

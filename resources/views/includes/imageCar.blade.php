@@ -30,6 +30,10 @@
                     <div class="homeButton3">
                         <a href="{{ route('sale.create',['id'=>$imageCar->id]) }}" ="sucess" class="btn btn-success btn-sm">Registrar Venta</a>
                     </div>
+                @else
+                    <div class="homeButton4">
+                        <a class="btn btn-success btn-sm disabled">Hay Stock</a>
+                    </div>
                 @endif
             @endif
         </div>

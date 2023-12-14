@@ -15,6 +15,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 class CarController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
 
     /**
      * Show the application dashboard.
@@ -81,6 +86,7 @@ class CarController extends Controller
         $car->door = $door;
         $car->stock = $stock;
         $car->price = $price;
+        $car->status = 'Habilitado';
 
         if (request()->hasFile('image')){
 
@@ -112,7 +118,6 @@ class CarController extends Controller
         'door' => ['required', 'string', 'max:255'],
         'stock' => ['required','integer'],
         'price' => ['required','integer'],
-        'option_Image' => ['required', 'string', 'max:255'],
     ]
 );
 
@@ -179,19 +184,21 @@ class CarController extends Controller
         return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'La foto se ha eliminado correctamente']);
     }
 
-    public function detail($id,$idImg=null,$img=null)
-    {   
-    
-        $imageCar=Car::with(['media'])->find($id);   
+    public function list($id=null,$status=null){
 
-        return view('cars.detail', [
-            'imageCar' => $imageCar,
-            'img' => $img,
-            'idImg' => $idImg,
-        ]);
-    }    
+        if($id!=null && $status!=null){
+            
+            $car = Car::find($id);
 
-    public function list(){
+            if($status=="Deshabilitado"){
+                $car->status='Deshabilitado';
+            }else{
+                $car->status='Habilitado';
+            }
+
+            $car->update();
+        }
+
 
         //Trae la tabla de Usuarios y la pasa por el View
         $cars=Car::orderBy('id','asc')->get(); 
@@ -200,7 +207,6 @@ class CarController extends Controller
         $engines=Engine::all(); 
 
         return view('cars.list', ['cars' => $cars,'brands' => $brands,'engines' => $engines,]);
-        //return view('cars.list',compact('cars','brands','engines'));
     }
 
 }

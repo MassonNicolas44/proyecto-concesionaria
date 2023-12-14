@@ -23,7 +23,9 @@ class SaleController extends Controller
         $cars=Car::find($id);  
         $brands=Brand::find($cars->brand_id);  
         $engines=Engine::find($cars->engine_id);  
-        $users=User::orderBy('name','asc')->get();   
+        $users=User::where('status','LIKE','Habilitado')
+        ->where('rol','LIKE','Cliente')
+        ->orderBy('name','asc')->get();   
 
         return view('sales.create',compact('cars','brands','engines','users'));
     }

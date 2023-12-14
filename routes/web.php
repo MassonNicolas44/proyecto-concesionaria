@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //Vehiculo
-Route::get('/car/{id}/{idImg?}/{img?}', [App\Http\Controllers\CarController::class, 'detail'])->name('car.detail');
+Route::get('/car/{id}/{idImg?}/{img?}', [App\Http\Controllers\CarDetailController::class, 'detail'])->name('car.detail');
 
 Route::get('/cars/register', [App\Http\Controllers\CarController::class, 'create'])->name('car.create');
 Route::post('/cars/save', [App\Http\Controllers\CarController::class, 'save'])->name('car.save');
@@ -32,7 +32,7 @@ Route::post('/cars/update', [App\Http\Controllers\CarController::class, 'update'
 
 Route::get('/cars/delete/{id}', [App\Http\Controllers\CarController::class, 'delete'])->name('car.delete');
 
-Route::get('/cars/list', [App\Http\Controllers\CarController::class, 'list'])->name('car.list');
+Route::get('/cars/list/{id?}/{status?}', [App\Http\Controllers\CarController::class, 'list'])->name('car.list');
 
 //Imagen
 Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('image.deleteImg');
@@ -44,7 +44,7 @@ Route::post('/user/updateAdmin', [App\Http\Controllers\UserController::class, 'u
 Route::get('/user/editUser/{id}', [App\Http\Controllers\UserController::class, 'editUser'])->name('user.editUser');
 Route::post('/user/updateUser', [App\Http\Controllers\UserController::class, 'updateUser'])->name('user.updateUser');
 
-Route::get('/user/list', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
+Route::get('/user/list/{id?}/{status?}', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
 
 //Marca
 Route::get('/brand/register', [App\Http\Controllers\BrandController::class, 'create'])->name('brand.create');

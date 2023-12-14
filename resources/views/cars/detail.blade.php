@@ -5,6 +5,16 @@
 <div class="container">
 
         <div class="card">
+
+        <div class="container-avatar">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+       
+                @endif
+            </div>
+
             <div class="card pub_image">
                 <div class="card-header">
                     <div class="textFont">
@@ -54,7 +64,9 @@
                     </div>
                      <div class="description">
                         <ul> 
-                            <li> <b> {{'Tipo de Motor:'}} </b> {{ $imageCar->engine->description }} </li>
+                            <li> <b> {{'Marca:'}} </b> {{ $imageCar->brand->name }} </li>
+                            <li> <b> {{'Modelo:'}} </b> {{ $imageCar->model }} </li>
+                            <li> <b> {{'Año:'}} </b> {{ $imageCar->year }} </li>
                             <li> <b> {{ 'Color: ' }} </b> {{ $imageCar->color }} </li>
                             <li> <b> {{ 'Cantidad de puertas: '}} </b> {{ $imageCar->door }} </li>
                             <li> <b> {{ 'Descripcion / Detalles: '}} </b> {{ $imageCar->description }} </li>
