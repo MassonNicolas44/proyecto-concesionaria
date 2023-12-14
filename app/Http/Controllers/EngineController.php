@@ -12,12 +12,28 @@ class EngineController extends Controller
         $this->middleware('auth');
     }
 
-    public function config()
+    public function create()
+    {
+
+        return view('engines.create');
+
+    }
+
+    public function edit()
     {
 
         //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
         $engines=Engine::orderBy('description','asc')->get(); 
-        return view('engines.config',['engines'=>$engines]);
+        return view('engines.edit',['engines'=>$engines]);
+
+    }
+
+    public function list()
+    {
+
+        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        $engines=Engine::orderBy('description','asc')->get(); 
+        return view('engines.list',['engines'=>$engines]);
 
     }
 

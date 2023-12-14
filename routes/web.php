@@ -32,24 +32,37 @@ Route::post('/cars/update', [App\Http\Controllers\CarController::class, 'update'
 
 Route::get('/cars/delete/{id}', [App\Http\Controllers\CarController::class, 'delete'])->name('car.delete');
 
-Route::get('/cars/file/{filename}', [App\Http\Controllers\CarController::class, 'getImage'])->name('car.file');
+Route::get('/cars/list', [App\Http\Controllers\CarController::class, 'list'])->name('car.list');
 
 //Imagen
 Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('image.deleteImg');
 
 //Usuario
-Route::get('/user/config', [App\Http\Controllers\UserController::class, 'config'])->name('user.config');
-Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+Route::get('/user/editAdmin', [App\Http\Controllers\UserController::class, 'editAdmin'])->name('user.editAdmin');
+Route::post('/user/updateAdmin', [App\Http\Controllers\UserController::class, 'updateAdmin'])->name('user.updateAdmin');
+
+Route::get('/user/editUser/{id}', [App\Http\Controllers\UserController::class, 'editUser'])->name('user.editUser');
+Route::post('/user/updateUser', [App\Http\Controllers\UserController::class, 'updateUser'])->name('user.updateUser');
+
+Route::get('/user/list', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
 
 //Marca
-Route::get('/brand/config', [App\Http\Controllers\BrandController::class, 'config'])->name('brand.config');
+Route::get('/brand/register', [App\Http\Controllers\BrandController::class, 'create'])->name('brand.create');
 Route::post('/brand/save', [App\Http\Controllers\BrandController::class, 'save'])->name('brand.save');
+
+Route::get('/brand/edit', [App\Http\Controllers\BrandController::class, 'edit'])->name('brand.edit');
 Route::post('/brand/update', [App\Http\Controllers\BrandController::class, 'update'])->name('brand.update');
 
+Route::get('/brand/list', [App\Http\Controllers\BrandController::class, 'list'])->name('brand.list');
+
 //Tipo de Motor
-Route::get('/engine/config', [App\Http\Controllers\EngineController::class, 'config'])->name('engine.config');
+Route::get('/engine/register', [App\Http\Controllers\EngineController::class, 'create'])->name('engine.create');
 Route::post('/engine/save', [App\Http\Controllers\EngineController::class, 'save'])->name('engine.save');
+
+Route::get('/engine/edit', [App\Http\Controllers\EngineController::class, 'edit'])->name('engine.edit');
 Route::post('/engine/update', [App\Http\Controllers\EngineController::class, 'update'])->name('engine.update');
+
+Route::get('/engine/list', [App\Http\Controllers\EngineController::class, 'list'])->name('engine.list');
 
 //Venta
 Route::get('/sale/register/{id}', [App\Http\Controllers\SaleController::class, 'create'])->name('sale.create');

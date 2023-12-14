@@ -12,12 +12,26 @@ class BrandController extends Controller
         $this->middleware('auth');
     }
 
-    public function config()
+    public function create()
+    {
+        return view('brands.create');
+    }
+
+    public function edit()
     {
 
         //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
         $brands=Brand::orderBy('name','asc')->get(); 
-        return view('brands.config',['brands'=>$brands]);
+        return view('brands.edit',['brands'=>$brands]);
+
+    }
+
+    public function list()
+    {
+
+        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        $brands=Brand::orderBy('name','asc')->get(); 
+        return view('brands.list',['brands'=>$brands]);
 
     }
 

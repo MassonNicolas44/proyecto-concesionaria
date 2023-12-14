@@ -7,10 +7,11 @@
         <div class="card">
             <div class="card pub_image">
                 <div class="card-header">
-          
+                    <div class="textFont">
                         </hr>
-                        <p class="nickname"> {{ $imageCar->brand->descripcion . ' '.$imageCar->model . '
+                        <p class="nickname"> {{ $imageCar->brand->name . ' '.$imageCar->model . '
                             '.$imageCar->year}} </p>
+                        </div>
                     </div>
                   
                 </div>

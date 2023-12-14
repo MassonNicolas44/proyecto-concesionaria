@@ -1,0 +1,66 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            <div class="card">
+                
+                <div class="container-avatar">
+                    @if (session('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+        
+                    @endif
+                </div>
+
+                    <div class="card-header">{{ __('Lista de Vehiculos') }}</div>
+                        <div class="card-body">
+
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
+                                    <th>Id</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Tipo de Motor</th>
+                                    <th>Año</th>
+                                    <th>Color</th>
+                                    <th>Descripcion</th>
+                                    <th>Cant Puerta</th>
+                                    <th>Stock</th>
+                                    <th>Precio</th>
+                                    <th>Accion</th>
+                                </thead>
+
+                                <tbody>
+                                    @foreach($cars as $car)
+                                        <tr>
+                                            <td>{{$car->id}}</td>
+                                            <td>{{$brands[$car->brand_id-1]->name}}</td>
+                                            <td>{{$car->model}}</td>
+                                            <td>{{$engines[$car->engine_id-1]->description}}</td>
+                                            <td>{{$car->year}}</td>
+                                            <td>{{$car->color}}</td>
+                                            <td>{{$car->description}}</td>
+                                            <td>{{$car->door}}</td>
+                                            <td>{{$car->stock}}</td>
+                                            <td>{{$car->price}}</td>
+                                            <td>
+                                                <div class="list">
+                                                <a href="{{ route('car.edit',['id'=>$car->id]) }}" ="sucess" class="btn btn-warning btn-sm"> Editar</a>
+                                                <a href="{{ route('car.delete',['id'=>$car->id]) }}"="sucess" class="btn  btn-danger btn-sm">Eliminar</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach 
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

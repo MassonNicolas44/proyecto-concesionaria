@@ -36,10 +36,7 @@ class RegisterController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest');
-    }
+
 
     /**
      * Get a validator for an incoming registration request.
@@ -53,7 +50,11 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'int'],
+            'address' => ['required', 'string', 'max:255'],
+            'postalCode' => ['required', 'int'],
+            'city' => ['required', 'string', 'max:255'],
+            'province' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -69,8 +70,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'rol' => 'Usuario',
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'postalCode' => $data['postalCode'],
+            'city' => $data['city'],
+            'province' => $data['province'],
+            'password' => 'null',
+            'rol' => 'Cliente',
             'image' => 'null',
         ]);
     }

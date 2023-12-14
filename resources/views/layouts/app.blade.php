@@ -46,7 +46,7 @@
                         @guest
 
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
+                                <a class="nav-link" href="{{ route('home') }}">{{ __('Inicio') }}</a>
                             </li>
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -66,16 +66,64 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                 <a class="dropdown-item" >
-                                    <a class="nav-link" href=" {{ route('car.create')}} ">Ingresar</a>
+                                    <a class="nav-link" href="{{ route('car.list') }}">Listado</a>
                                 </a>
+
                                 <a class="dropdown-item" >
-                                    <a class="nav-link" href=" {{ route('brand.config')}} ">Marca</a>
+                                    <a class="nav-link" href=" {{ route('car.create')}} ">Añadir</a>
                                 </a>
-                                <a class="dropdown-item" >
-                                    <a class="nav-link" href=" {{ route('engine.config')}} ">Tipo de Motor</a>
-                                </a>
+
                             </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Marca
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('brand.list')}} ">Listado</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('brand.create')}} ">Añadir</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('brand.edit')}} ">Modificar</a>
+                                </a>
+
+                            </div>
+
+                        </li>
+
+                        <li class="nav-item dropdown">
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Tipo de Motor
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('engine.list')}} ">Listado</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('engine.create')}} ">Añadir</a>
+                                </a>
+
+                                <a class="dropdown-item">
+                                    <a class="nav-link" href=" {{ route('engine.edit')}} ">Modificar</a>
+                                </a>
+
+                            </div>
+
                         </li>
 
                         <li class="nav-item dropdown">
@@ -85,45 +133,22 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
+                            
                                 <a class="dropdown-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Ingresar</a>
+                                    <a class="nav-link" href="{{ route('user.list') }}">Listado</a>
                                 </a>
 
                                 <a class="dropdown-item">
-                                    <a class="nav-link" href="">Modificar</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href="">Eliminar</a>
+                                    <a class="nav-link" href="{{ route('register') }}">Añadir</a>
                                 </a>
 
                             </div>
 
                         </li>
 
-                        <li class="nav-item dropdown">
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Ventas
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item">
-                                    {{ __('Editar') }}
-                                </a>
-
-                                <a class="dropdown-item" >
-                                    {{ __('Eliminar') }}
-                                </a>
-
-                                <a class="dropdown-item" >
-                                    {{ __('Informes') }}
-                                </a>
-                            </div>
-
-                        </li>
+                            <li class="nav-item">
+                                    <a class="nav-link" href="">{{ __('Ventas') }}</a>
+                            </li>
 
                             <li class="nav-item dropdown">
 
@@ -133,7 +158,7 @@
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('user.config') }}">
+                                    <a class="dropdown-item" href="{{ route('user.editAdmin') }}">
                                         {{ __('Configuracion') }}
                                     </a>
 

@@ -15,7 +15,7 @@
                 @endif
             </div>
 
-                <div class="card-header">{{ __('Ingresar Vehiculo') }}</div>
+                <div class="card-header">{{ __('Añadir Vehiculo') }}</div>
 
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('car.save') }}">
@@ -194,7 +194,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <input type="submit" class="btn btn-primary" value="Añadir">
+                                <input type="submit" class="btn btn-primary" value="Finalizar">
                                 </button>
                             </div>
                         </div>

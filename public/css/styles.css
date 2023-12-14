@@ -17,33 +17,6 @@
     text-align: center;
 }
 
-.homeButtonAdmin{
-    display:flex;
-    justify-content: center;
-    padding:10px;
-    margin:5px;
-}
-
-.homeButton1{
-    margin-right:25px;
-}
-
-.homeButton2{
-    margin-right:25px;
-}
-
-.homeButton3 .btn{
-    margin-right:25px;
-}
-
-.homeButton4{
-    margin-right:25px;
-}
-
-.homeButton5{
-    margin-right:25px;
-}
-
 .homeButtonHome{
     display:flex;
     justify-content: space-between;
@@ -51,28 +24,25 @@
     margin:5px;
 }
 
-.homeButton6 .btn{
-    display:flex;
-    justify-content: center;
-    width: 65%;
-    padding:10px;
-    margin:15px;
-    margin-left:17%;
+.homeButton1 .btn{
+    width: 165%;
     font-size: 20px;
+    margin-left:60%;
 }
 
-.homeButton7 .btn{
-    width: 155%;
-    font-size: 20px;
-    margin-left:70%;
-}
-
-.homeButton8 .btn{
+.homeButton2 .btn{
     width: 210%;
     cursor: not-allowed;
     font-size: 20px;
     margin-left:-185%;
 }
+
+.homeButton3 .btn{
+    width: 180%;
+    font-size: 20px;
+    margin-left:-145%;
+}
+
 
 .foreachImage{
     display:flex;
@@ -96,4 +66,15 @@
     padding-bottom:10px;
     margin:5px;
     border: 1px solid #000;
+    font-size: 16px;
+}
+
+.textFont{
+    font-size: 16px;
+}
+
+.list{
+    display:flex;
+    justify-content: space-evenly;
+
 }

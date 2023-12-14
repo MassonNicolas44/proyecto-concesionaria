@@ -15,9 +15,9 @@
                 @endif
             </div>
 
-                <div class="card-header">{{ __('Editar Usuario') }}</div>
+                <div class="card-header">{{ __('Modificar datos de Administrador') }}</div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('user.update') }}">
+                    <form method="POST" action="{{ route('user.updateAdmin') }}">
                         @csrf
 
                         <input type="hidden" name="idUser" value="{{Auth::user()->id}}"/>
@@ -66,7 +66,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <input type="submit" class="btn btn-primary" value="Actualizar Usuario">
+                                <input type="submit" class="btn btn-primary" value="Finalizar">
                                 </button>
                             </div>
                         </div>

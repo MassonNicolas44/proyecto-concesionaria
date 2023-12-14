@@ -191,4 +191,16 @@ class CarController extends Controller
         ]);
     }    
 
+    public function list(){
+
+        //Trae la tabla de Usuarios y la pasa por el View
+        $cars=Car::orderBy('id','asc')->get(); 
+
+        $brands=Brand::all();
+        $engines=Engine::all(); 
+
+        return view('cars.list', ['cars' => $cars,'brands' => $brands,'engines' => $engines,]);
+        //return view('cars.list',compact('cars','brands','engines'));
+    }
+
 }
