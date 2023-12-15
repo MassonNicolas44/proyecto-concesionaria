@@ -38,9 +38,9 @@
                                     @foreach($cars as $car)
                                         <tr>
                                             <td>{{$car->id}}</td>
-                                            <td>{{$brands[$car->brand_id-1]->name}}</td>
+                                            <td>{{$car->brand->name}}</td>
                                             <td>{{$car->model}}</td>
-                                            <td>{{$engines[$car->engine_id-1]->description}}</td>
+                                            <td>{{$car->engine->description}}</td>
                                             <td>{{$car->year}}</td>
                                             <td>{{$car->color}}</td>
                                             <td>{{$car->description}}</td>

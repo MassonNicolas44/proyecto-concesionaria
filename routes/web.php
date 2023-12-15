@@ -67,3 +67,7 @@ Route::get('/engine/list', [App\Http\Controllers\EngineController::class, 'list'
 //Venta
 Route::get('/sale/register/{id}', [App\Http\Controllers\SaleController::class, 'create'])->name('sale.create');
 Route::post('/sale/save', [App\Http\Controllers\SaleController::class, 'save'])->name('sale.save');
+
+Route::get('/sale/list', [App\Http\Controllers\SaleController::class, 'list'])->name('sale.list');
+
+Route::get('/sale/delete/{idSale}/{idCar}', [App\Http\Controllers\SaleController::class, 'delete'])->name('sale.delete');

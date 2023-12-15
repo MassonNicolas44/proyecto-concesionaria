@@ -147,7 +147,7 @@
                         </li>
 
                             <li class="nav-item">
-                                    <a class="nav-link" href="">{{ __('Ventas') }}</a>
+                                    <a class="nav-link" href="{{ route('sale.list') }}">{{ __('Ventas') }}</a>
                             </li>
 
                             <li class="nav-item dropdown">

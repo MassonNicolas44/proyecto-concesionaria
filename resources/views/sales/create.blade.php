@@ -22,7 +22,6 @@
                         @csrf
 
                         <input type="hidden" name="car_id" value="{{$cars->id}}"/>
-                        <input type="hidden" name="stock" value="{{$cars->stock}}"/>
 
                         <div class="row mb-3">
                             <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Cliente') }}</label>
@@ -32,7 +31,7 @@
                                 <option value="">-- Escoja el cliente --</option>
                                     @foreach ($users as $user)
                                         <option value="{{ $user['id'] }}">
-                                            {{$user['name']}}
+                                            {{$user['name']}} {{$user['surname']}}
                                         </option>
                                     @endforeach
                                 </select>

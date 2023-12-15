@@ -37,18 +37,16 @@ class SaleController extends Controller
        $validate = $this->validate($request, [
             'user_id' => ['required'],
             'car_id' => ['required'],
-            'stock' => ['required'],
         ]
     );
 
         //Traer datos
         $user_id = $request->input('user_id');
         $car_id = $request->input('car_id');
-        $stock = $request->input('stock');
 
         //Descuento del stock
         $car=Car::find($car_id);
-        $car->stock=$stock-1;
+        $car->stock=($car->stock)-1;
 
         //Cargar valores
         $sale= New Sale;
@@ -60,7 +58,33 @@ class SaleController extends Controller
 
         //Redireccion de la pagina
         return redirect()->route('home')->with(['message' => 'Venta registrada correctamente']);
+    }
+    
+    public function delete($idSale,$idCar)
+    {
+
+        $sale=Sale::find($idSale);
+        $car=Car::find($idCar);
+
+        $car->stock=($car->stock)+1;
+
+        $car->update();
+        $sale->delete();
+
+        $sales=Sale::all();
+
+        return redirect()->route('sale.list', ['sales' => $sales])->with(['message' => 'Venta anulada correctamente']);
+
+    }
+
+    public function list()
+    {
+
+        $sales=Sale::all();
+
+        return view('sales.list', ['sales' => $sales]);
 
     }
     
+
 }
