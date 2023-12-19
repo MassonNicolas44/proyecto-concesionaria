@@ -6,6 +6,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+
+            <div class="container-avatar">
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+       
+                @endif
+            </div>
+
                 <div class="card-header">{{ __('Listado de Tipo de Motor') }}</div>
 
                 <div class="card-body">

@@ -122,35 +122,6 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="door" class="col-md-4 col-form-label text-md-end">{{ __('Cantidad de Puertas') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ old('door') }}" name="door" required/>
-
-
-                                <option value="">-- Escoja la cantidad de puertas --</option>
-                                        
-                                        <?php 
-                                            $CantPuertas=["Menos de 2 Puertas","2 Puertas","3 Puertas","4 Puertas","5 Puertas","Mas de 5 Puertas"];
-                                        ?>
-
-                                        @foreach ($CantPuertas as $CantPuerta)
-   
-                                            <option value=" {{ $CantPuerta }} "> {{ $CantPuerta }}  </option>
-
-                                        @endforeach
-
-                                </select>
-
-                                @if ($errors->has('door'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong> {{$errors->first('door')}} </strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
                             <label for="stock" class="col-md-4 col-form-label text-md-end">{{ __('Stock') }}</label>
 
                             <div class="col-md-6">

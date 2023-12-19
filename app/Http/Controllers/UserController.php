@@ -22,19 +22,18 @@ class UserController extends Controller
         return view('user.editUser',['user'=>$users]);
     }
 
-
     public function updateUser(Request $Request){
 
         //Validacion de datos antes de cargar
         $validate = $this->validate($Request, [
-            'name' => ['required', 'string', 'max:255'],
-            'surname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'phone' => ['required', 'int'],
-            'address' => ['required', 'string', 'max:255'],
-            'postalCode' => ['required', 'int'],
-            'city' => ['required', 'string', 'max:255'],
-            'province' => ['required', 'string', 'max:255'],
+            'name' => ['required','min:1', 'string', 'max:255'],
+            'surname' => ['required','min:1', 'string', 'max:255'],
+            'email' => ['required','min:1', 'string', 'email', 'max:255'],
+            'phone' => ['required','min:1', 'int'],
+            'address' => ['required','min:1', 'string', 'max:255'],
+            'postalCode' => ['required','min:1', 'int'],
+            'city' => ['required','min:1', 'string', 'max:255'],
+            'province' => ['required','min:1', 'string', 'max:255'],
         ]);
 
 
@@ -64,11 +63,9 @@ class UserController extends Controller
             $user->update();
 
             //Redireccion de la pagina
-            return redirect()->route('user.list')->with(['message' => 'Usuario actualizado correctamente']);
+            return redirect()->route('user.list')->with(['message' => 'Cliente actualizado correctamente']);
 
     }
-
-
 
     public function editAdmin(){
 
@@ -82,9 +79,9 @@ class UserController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($Request, [
-        'name' => ['required', 'max:255'],
-        'surname' => ['required','max:255','unique:users,surname,'.$id],
-        'email' => ['required', 'string', 'max:255','unique:users,email,'.$id],
+        'name' => ['required','min:1', 'max:255'],
+        'surname' => ['required','min:1','max:255','unique:users,surname,'.$id],
+        'email' => ['required','min:1', 'string', 'max:255','unique:users,email,'.$id],
             ]
         );
 
@@ -101,7 +98,7 @@ class UserController extends Controller
     $user->update();
 
     //Redireccion de la pagina
-    return redirect()->route('user.config')->with(['message' => 'Usuario actualizado correctamente']);
+    return redirect()->route('user.config')->with(['message' => 'Cliente actualizado correctamente']);
 
     }
 
@@ -125,5 +122,14 @@ class UserController extends Controller
         $users=User::where('rol','LIKE','Cliente')
         ->orderBy('name','asc')->get(); 
         return view('user.list',['users'=>$users]);
+    }
+
+    public function delete($id)
+    {
+        // Conseguir el objeto image
+        User::find($id)->delete();
+
+        //Redireccion de la pagina
+        return redirect()->route('user.list')->with(['message' => 'El Cliente se ha eliminado correctamente']);
     }
 }

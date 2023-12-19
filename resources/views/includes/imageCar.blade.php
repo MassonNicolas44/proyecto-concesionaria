@@ -1,4 +1,4 @@
-</br>
+
 <div class="card pub_image">
     
     <div class="card-header">

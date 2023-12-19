@@ -65,10 +65,10 @@
                      <div class="description">
                         <ul> 
                             <li> <b> {{'Marca:'}} </b> {{ $imageCar->brand->name }} </li>
+                            <li> <b> {{'Tipo de Motor:'}} </b> {{ $imageCar->engine->description }} </li>
                             <li> <b> {{'Modelo:'}} </b> {{ $imageCar->model }} </li>
                             <li> <b> {{'Año:'}} </b> {{ $imageCar->year }} </li>
                             <li> <b> {{ 'Color: ' }} </b> {{ $imageCar->color }} </li>
-                            <li> <b> {{ 'Cantidad de puertas: '}} </b> {{ $imageCar->door }} </li>
                             <li> <b> {{ 'Descripcion / Detalles: '}} </b> {{ $imageCar->description }} </li>
                             <li> <b> {{ 'Precio (Dolares): $ '}} </b> {{ $imageCar->price }} </li>
                             <?php  // <span class="nickname date">{{' | '.\FormatTime::LongTimeFilter($image->created_at)}}</span> ?>

@@ -42,7 +42,7 @@ class EngineController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'description' => ['required'],
+            'description' => ['required','min:1'],
         ]
     );
 
@@ -56,7 +56,7 @@ class EngineController extends Controller
         $engine->save();
 
         //Redireccion de la pagina
-        return redirect()->route('engine.config')->with(['message' => 'Tipo de Motor añadido correctamente']);
+        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor añadido correctamente']);
     }
 
     public function update(Request $request)
@@ -64,7 +64,7 @@ class EngineController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'description' => ['required'],
+            'description' => ['required','min:1'],
         ]
     );
 
@@ -79,6 +79,6 @@ class EngineController extends Controller
         $engine->update();
 
         //Redireccion de la pagina
-        return redirect()->route('engine.config')->with(['message' => 'Tipo de Motor editado correctamente']);
+        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor editado correctamente']);
     }
 }

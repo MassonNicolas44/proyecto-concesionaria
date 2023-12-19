@@ -26,7 +26,9 @@
                                     <th>Direccion</th>
                                     <th>Telefono</th>
                                     <th>Precio</th>
+                                    <th>Estado</th>
                                     <th>Fecha Compra</th>
+                                    <th>Fecha Actualizacion</th>
                                     <th>Accion</th>
                                 </thead>
 
@@ -34,14 +36,22 @@
                                     @foreach($sales as $sale)
                                         <tr>
                                             <td>{{$sale->id}}</td>
-                                            <td>{{$sale->car->id}}  --  {{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}}</td>
+                                            <td>{{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}}</td>
                                             <td>{{$sale->user->name}} {{$sale->user->surname}}</td>
                                             <td>{{$sale->user->address}}</td>
                                             <td>{{$sale->user->phone}}</td>
                                             <td>$ {{$sale->car->price}}</td>
+                                            <td>{{$sale->status}}</td>
                                             <td>{{$sale->created_at}}</td>
+                                            <td>{{$sale->updated_at}}</td>
                                             <td>
-                                                <a href="{{ route('sale.delete',['idSale'=>$sale->id,'idCar'=>$sale->car->id]) }}"="sucess" class="btn  btn-danger btn-sm">Eliminar</a>
+
+                                            @if($sale->status=='Anulada')
+                                                <button disabled class="btn  btn-danger btn-sm" >Anulada</button>
+                                            @else
+                                                <a href="{{ route('sale.delete',['idSale'=>$sale->id,'idCar'=>$sale->car->id]) }}"="sucess" class="btn  btn-danger btn-sm" >Anular</a>
+                                            @endif
+
                                             </td>
                                         </tr>
                                     @endforeach 

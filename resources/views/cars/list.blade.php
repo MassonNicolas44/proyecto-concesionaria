@@ -27,7 +27,6 @@
                                     <th>Año</th>
                                     <th>Color</th>
                                     <th>Descripcion</th>
-                                    <th>Cant Puerta</th>
                                     <th>Stock</th>
                                     <th>Precio</th>
                                     <th>Estado</th>
@@ -44,7 +43,6 @@
                                             <td>{{$car->year}}</td>
                                             <td>{{$car->color}}</td>
                                             <td>{{$car->description}}</td>
-                                            <td>{{$car->door}}</td>
                                             <td>{{$car->stock}}</td>
                                             <td>{{$car->price}}</td>
                                             <td>{{$car->status}}</td>

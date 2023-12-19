@@ -54,13 +54,12 @@ class CarController extends Controller
        $validate = $this->validate($request, [
             'brand_id' => ['required'],
             'engine_id' => ['required'],
-            'model' => ['required', 'string', 'max:255'],
-            'year' => ['required','integer'],
-            'color' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:255'],
-            'door' => ['required', 'string', 'max:255'],
-            'stock' => ['required','integer'],
-            'price' => ['required','integer'],
+            'model' => ['required','min:1', 'string', 'max:255'],
+            'year' => ['required','min:1','integer'],
+            'color' => ['required','min:1', 'string', 'max:255'],
+            'description' => ['required','min:1', 'string', 'max:255'],
+            'stock' => ['required','min:1','integer'],
+            'price' => ['required','min:1','integer'],
         ]
     );
 
@@ -71,7 +70,6 @@ class CarController extends Controller
         $year = $request->input('year');
         $color = $request->input('color');
         $description = $request->input('description');
-        $door = $request->input('door');
         $stock = $request->input('stock');
         $price = $request->input('price');   
 
@@ -83,7 +81,6 @@ class CarController extends Controller
         $car->year = $year;
         $car->color = $color;
         $car->description = $description;
-        $car->door = $door;
         $car->stock = $stock;
         $car->price = $price;
         $car->status = 'Habilitado';
@@ -111,13 +108,12 @@ class CarController extends Controller
         $validate = $this->validate($request, [
         'brand_id' => ['required'],
         'engine_id' => ['required'],
-        'model' => ['required', 'string', 'max:255'],
-        'year' => ['required','integer'],
-        'color' => ['required', 'string', 'max:255'],
-        'description' => ['required', 'string', 'max:255'],
-        'door' => ['required', 'string', 'max:255'],
-        'stock' => ['required','integer'],
-        'price' => ['required','integer'],
+        'model' => ['required','min:1', 'string', 'max:255'],
+        'year' => ['required','min:1','integer'],
+        'color' => ['required','min:1', 'string', 'max:255'],
+        'description' => ['required','min:1', 'string', 'max:255'],
+        'stock' => ['required','min:1','integer'],
+        'price' => ['required','min:1','integer'],
     ]
 );
 
@@ -129,7 +125,6 @@ class CarController extends Controller
     $year = $request->input('year');
     $color = $request->input('color');
     $description = $request->input('description');
-    $door = $request->input('door');
     $stock = $request->input('stock');
     $price = $request->input('price');
     $option_Image = $request->input('option_Image');
@@ -142,7 +137,6 @@ class CarController extends Controller
     $car->year = $year;
     $car->color = $color;
     $car->description = $description;
-    $car->door = $door;
     $car->stock = $stock;
     $car->price = $price;
 

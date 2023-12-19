@@ -15,7 +15,7 @@
                     @endif
                 </div>
 
-                    <div class="card-header">{{ __('Lista de Usuarios') }}</div>
+                    <div class="card-header">{{ __('Lista de Clientes') }}</div>
                         <div class="card-body">
 
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -52,7 +52,7 @@
                                                         <a href="{{ route('user.list',['id'=>$user->id,'status'=>'Habilitado']) }}" ="sucess" class="btn btn-success btn-sm"> Habilitar</a>
                                                     @endif
                                                     <a href="{{ route('user.editUser',['id'=>$user->id]) }}" class="btn btn-warning btn-sm"> Editar </a>
-                                                    <a href="" class="btn btn-danger btn-sm"> Eliminar </a>
+                                                    <a href="{{ route('user.delete',['id'=>$user->id]) }}" class="btn btn-danger btn-sm"> Eliminar </a>
                                                 </div>
                                             </td>
                                         </tr>

@@ -14,7 +14,7 @@
         
                     @endif
                 </div>
-                <div class="card-header">{{ __('Modificar datos de Usuario') }}</div>
+                <div class="card-header">{{ __('Modificar datos de Cliente') }}</div>
 
                 <div class="card-body">
                 <form method="POST" action="{{ route('user.updateUser') }}">

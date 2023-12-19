@@ -52,6 +52,7 @@ class SaleController extends Controller
         $sale= New Sale;
         $sale->user_id=$user_id;
         $sale->car_id=$car_id;
+        $sale->status='Vendido';
 
         $car->update();
         $sale->save();
@@ -67,9 +68,10 @@ class SaleController extends Controller
         $car=Car::find($idCar);
 
         $car->stock=($car->stock)+1;
+        $sale->status='Anulada';
 
         $car->update();
-        $sale->delete();
+        $sale->update();
 
         $sales=Sale::all();
 

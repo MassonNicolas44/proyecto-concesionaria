@@ -40,7 +40,7 @@ class BrandController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'name' => ['required'],
+            'name' => ['required','min:1'],
         ]
         );
         //Traer datos
@@ -53,7 +53,7 @@ class BrandController extends Controller
         $brand->save();
 
         //Redireccion de la pagina
-        return redirect()->route('brand.config')->with(['message' => 'Marca de vehiculo añadida correctamente']);
+        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo añadida correctamente']);
     }
 
     public function update(Request $request)
@@ -61,8 +61,8 @@ class BrandController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'brand_id' => ['required'],
-            'name' => ['required'],
+            'brand_id' => ['required','min:1'],
+            'name' => ['required','min:1'],
         ]
         );
 
@@ -78,7 +78,7 @@ class BrandController extends Controller
         $brand->update();
 
         //Redireccion de la pagina
-        return redirect()->route('brand.config')->with(['message' => 'Marca de vehiculo editada correctamente']);
+        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo editada correctamente']);
     }
 
 }

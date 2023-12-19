@@ -46,6 +46,8 @@ Route::post('/user/updateUser', [App\Http\Controllers\UserController::class, 'up
 
 Route::get('/user/list/{id?}/{status?}', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
 
+Route::get('/user/delete/{id?}', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+
 //Marca
 Route::get('/brand/register', [App\Http\Controllers\BrandController::class, 'create'])->name('brand.create');
 Route::post('/brand/save', [App\Http\Controllers\BrandController::class, 'save'])->name('brand.save');
