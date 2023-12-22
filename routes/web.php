@@ -34,6 +34,8 @@ Route::get('/cars/delete/{id}', [App\Http\Controllers\CarController::class, 'del
 
 Route::get('/cars/list/{id?}/{status?}', [App\Http\Controllers\CarController::class, 'list'])->name('car.list');
 
+Route::get('/cars/reportPDF', [App\Http\Controllers\CarController::class, 'report'])->name('car.report');
+
 //Imagen
 Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('image.deleteImg');
 
@@ -45,6 +47,8 @@ Route::get('/user/editUser/{id}', [App\Http\Controllers\UserController::class, '
 Route::post('/user/updateUser', [App\Http\Controllers\UserController::class, 'updateUser'])->name('user.updateUser');
 
 Route::get('/user/list/{id?}/{status?}', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
+
+Route::get('/user/reportPDF', [App\Http\Controllers\UserController::class, 'report'])->name('user.report');
 
 Route::get('/user/delete/{id?}', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
 
@@ -71,5 +75,7 @@ Route::get('/sale/register/{id}', [App\Http\Controllers\SaleController::class, '
 Route::post('/sale/save', [App\Http\Controllers\SaleController::class, 'save'])->name('sale.save');
 
 Route::get('/sale/list', [App\Http\Controllers\SaleController::class, 'list'])->name('sale.list');
+
+Route::get('/sale/reportPDF', [App\Http\Controllers\SaleController::class, 'report'])->name('sale.report');
 
 Route::get('/sale/delete/{idSale}/{idCar}', [App\Http\Controllers\SaleController::class, 'delete'])->name('sale.delete');

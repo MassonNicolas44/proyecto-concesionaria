@@ -9,6 +9,8 @@ use App\Models\Engine;
 use App\Models\User;
 use App\Models\Sale;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class SaleController extends Controller
 {
     public function __construct()
@@ -86,6 +88,16 @@ class SaleController extends Controller
 
         return view('sales.list', ['sales' => $sales]);
 
+    }
+
+    public function report()
+    {
+
+        $sales=Sale::all();
+
+        $pdf=Pdf::loadView('sales.report',compact('sales'));
+
+        return $pdf->stream('sale_report.pdf');
     }
     
 

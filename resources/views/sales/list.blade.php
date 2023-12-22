@@ -18,6 +18,8 @@
                     <div class="card-header">{{ __('Lista de Vehiculos') }}</div>
                         <div class="card-body">
 
+                        <a href="{{ route('sale.report')}}" ="sucess" class="btn btn-info btn-sm">Informe</a>
+
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
                                     <th>Id</th>

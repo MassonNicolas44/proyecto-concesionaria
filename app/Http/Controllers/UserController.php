@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+
 class UserController extends Controller
 {
     //
@@ -131,5 +133,15 @@ class UserController extends Controller
 
         //Redireccion de la pagina
         return redirect()->route('user.list')->with(['message' => 'El Cliente se ha eliminado correctamente']);
+    }
+
+    public function report()
+    {
+
+        $users=User::all();
+
+        $pdf=Pdf::loadView('user.report',compact('users'));
+
+        return $pdf->stream('user_report.pdf');
     }
 }

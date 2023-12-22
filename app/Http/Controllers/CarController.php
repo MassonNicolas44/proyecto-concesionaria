@@ -11,6 +11,7 @@ use App\Models\Engine;
 use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class CarController extends Controller
 {
@@ -198,6 +199,16 @@ class CarController extends Controller
         $cars=Car::orderBy('id','asc')->get(); 
 
         return view('cars.list', ['cars' => $cars]);
+    }
+
+    public function report()
+    {
+
+        $cars=Car::all();
+
+        $pdf=Pdf::loadView('cars.report',compact('cars'));
+
+        return $pdf->stream('car_report.pdf');
     }
 
 }

@@ -6,9 +6,17 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Lista Vehiculos') }}</div>
-                <form method="GET" action="{{ route('home') }}">
-                @csrf
+
+                @if (session('message'))
+                    <div class="alert alert-success">
+                        {{ session('message') }}
+                    </div>
+                @endif
+                
+                    <form method="GET" action="{{ route('home') }}">
+                    @csrf
                         <div class="row mb-2">
+                        <div class="homeFilter">
                             <label class="col-md-2 col-form-label text-md-center">Filtrado:</label>
                             <label for="brand_id" class="col-md-1 col-form-label text-md-end">Marca</label>
                             
@@ -40,13 +48,8 @@
                                 
                             </div>
                         </div>
-</form>
+                    </form>
 
-                @if (session('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-                @endif
 
                 @foreach ($imagesCar as $imageCar)
                     @include('includes.imageCar',['imageCar'=>$imageCar])
