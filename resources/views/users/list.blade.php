@@ -15,15 +15,15 @@
                     @endif
                 </div>
 
-                    <div class="card-header">{{ __('Lista de Clientes') }}</div>
+                    <div class="card-header">{{ __('Lista de Personal Administrativo') }}</div>
                         <div class="card-body">
-
-                        <a href="{{ route('user.report')}}" ="sucess" class="btn btn-info btn-sm">Informe</a>
-
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                 <thead>
                                     <th>Id</th>
+                                    <th>Cod. Ingreso</th>
                                     <th>Nombre</th>
+                                    <th>DNI</th>
+                                    <th>Rol</th>
                                     <th>Email</th>
                                     <th>Telefono</th>
                                     <th>Direccion</th>
@@ -38,7 +38,10 @@
                                     @foreach($users as $user)  
                                         <tr>
                                             <td>{{$user->id}}</td>
+                                            <td>{{$user->loginCode}}</td>
                                             <td>{{$user->name}} {{$user->surname}}</td>
+                                            <td>{{$user->dni}}</td>
+                                            <td>{{$user->rol}}</td>
                                             <td>{{$user->email}}</td>
                                             <td>{{$user->phone}}</td>
                                             <td>{{$user->address}}</td>
@@ -53,8 +56,9 @@
                                                     @else
                                                         <a href="{{ route('user.list',['id'=>$user->id,'status'=>'Habilitado']) }}" ="sucess" class="btn btn-success btn-sm"> Habilitar</a>
                                                     @endif
-                                                    <a href="{{ route('user.editUser',['id'=>$user->id]) }}" class="btn btn-warning btn-sm"> Editar </a>
+                                                    <a href="{{ route('user.edit',['id'=>$user->id]) }}" class="btn btn-warning btn-sm"> Editar </a>
                                                     <a href="{{ route('user.delete',['id'=>$user->id]) }}" class="btn btn-danger btn-sm"> Eliminar </a>
+                                                    
                                                 </div>
                                             </td>
                                         </tr>

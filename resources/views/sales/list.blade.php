@@ -15,12 +15,14 @@
                     @endif
                 </div>
 
-                    <div class="card-header">{{ __('Lista de Vehiculos') }}</div>
+                    <div class="card-header">{{ __('Lista de Ventas') }}</div>
                         <div class="card-body">
 
-                        <a href="{{ route('sale.report')}}" ="sucess" class="btn btn-info btn-sm">Informe</a>
+                        <div class="report">
+                            <a href="{{ route('sale.report')}}" ="sucess" class="btn btn-info">Generar Informe</a>
+                        </div>
 
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                 <thead>
                                     <th>Id</th>
                                     <th>Vehiculo</th>

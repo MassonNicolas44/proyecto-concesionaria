@@ -59,106 +59,133 @@
                             <a class="nav-link" href=" {{ route('home')}} ">Inicio </a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Vehiculo
-                            </a>
+                        @if(Auth::user()->status=="Habilitado")
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item" >
-                                    <a class="nav-link" href="{{ route('car.list') }}">Listado</a>
+                            <li class="nav-item dropdown">
+                                
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Vehiculo
                                 </a>
 
-                                <a class="dropdown-item" >
-                                    <a class="nav-link" href=" {{ route('car.create')}} ">Añadir</a>
-                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                            </div>
-                        </li>
+                                    <a class="dropdown-item" >
+                                        <a class="nav-link" href="{{ route('car.list') }}">Listado</a>
+                                    </a>
 
-                        <li class="nav-item dropdown">
+                                    <a class="dropdown-item" >
+                                        <a class="nav-link" href=" {{ route('car.create')}} ">Añadir</a>
+                                    </a>
 
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Marca
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('brand.list')}} ">Listado</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('brand.create')}} ">Añadir</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('brand.edit')}} ">Modificar</a>
-                                </a>
-
-                            </div>
-
-                        </li>
-
-                        <li class="nav-item dropdown">
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Tipo de Motor
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('engine.list')}} ">Listado</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('engine.create')}} ">Añadir</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href=" {{ route('engine.edit')}} ">Modificar</a>
-                                </a>
-
-                            </div>
-
-                        </li>
-
-                        <li class="nav-item dropdown">
-
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                Clientes
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href="{{ route('user.list') }}">Listado</a>
-                                </a>
-
-                                <a class="dropdown-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Añadir</a>
-                                </a>
-
-                            </div>
-
-                        </li>
-
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('sale.list') }}">{{ __('Ventas') }}</a>
+                                </div>
                             </li>
 
                             <li class="nav-item dropdown">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                                    Marca
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('user.editAdmin') }}">
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('brand.list')}} ">Listado</a>
+                                    </a>
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('brand.create')}} ">Añadir</a>
+                                    </a>
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('brand.edit')}} ">Modificar</a>
+                                    </a>
+
+                                </div>
+
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Tipo de Motor
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('engine.list')}} ">Listado</a>
+                                    </a>
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('engine.create')}} ">Añadir</a>
+                                    </a>
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href=" {{ route('engine.edit')}} ">Modificar</a>
+                                    </a>
+
+                                </div>
+
+                            </li>
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    Clientes
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href="{{ route('customer.list') }}">Listado</a>
+                                    </a>
+
+                                    <a class="dropdown-item">
+                                        <a class="nav-link" href="{{ route('customer.create') }}">Añadir</a>
+                                    </a>
+
+                                </div>
+
+                            </li>
+
+                            @if(Auth::user()->rol=="Administrador")
+
+                                <li class="nav-item dropdown">
+
+                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        Personal Administrativo
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                        <a class="dropdown-item">
+                                            <a class="nav-link" href="{{ route('user.list') }}">Listado</a>
+                                        </a>
+
+                                        <a class="dropdown-item">
+                                            <a class="nav-link" href="{{ route('user.create') }}">Añadir</a>
+                                        </a>
+
+                                    </div>
+
+                                </li>
+                            @endif
+                        
+                            <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('sale.list') }}">{{ __('Ventas') }}</a>
+                            </li>
+
+                        @endif
+
+                            <li class="nav-item dropdown">
+
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }} {{ Auth::user()->surname }} ({{ Auth::user()->rol }})
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('user.editConfig') }}">
                                         {{ __('Configuracion') }}
                                     </a>
 

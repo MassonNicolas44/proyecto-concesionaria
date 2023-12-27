@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Lista Vehiculos') }}</div>
+                <div class="card-header">{{ __('Vehiculos') }}</div>
 
                 @if (session('message'))
                     <div class="alert alert-success">
@@ -15,24 +15,24 @@
                 
                     <form method="GET" action="{{ route('home') }}">
                     @csrf
-                        <div class="row mb-2">
+                       
                         <div class="homeFilter">
                             <label class="col-md-2 col-form-label text-md-center">Filtrado:</label>
-                            <label for="brand_id" class="col-md-1 col-form-label text-md-end">Marca</label>
+                            <label for="brand_id" class="col-md-0 col-form-label text-md-end">Marca</label>
                             
-                            <div class="col-md-3">
-                                <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id"/>
-                                    <option value="">-- Escoja una Opcion --</option>
-                                    @foreach ($brands as $brand)
-                                        <option value="{{ $brand['id'] }}">
-                                            {{$brand['name']}}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                                <div>
+                                    <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id"/>
+                                        <option value="">-- Escoja una Opcion --</option>
+                                        @foreach ($brands as $brand)
+                                            <option value="{{ $brand['id'] }}">
+                                                {{$brand['name']}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
                             <label for="engine_id" class="col-md-1 col-form-label text-md-end">Motor</label>
-                            <div class="col-md-3">
+                            <div>
                                 <select id="engine_id" type="text" class="form-control {{ $errors->has('engine_id') ? 'is-invalid' : '' }}" value="{{ old('engine_id') }}" name="engine_id"/>
                                 <option value="">-- Escoja una Opcion --</option>
                                     @foreach ($engines as $engine)
@@ -41,10 +41,11 @@
                                         </option>
                                     @endforeach
                                 </select>
+                            
                             </div>
-                             
+                            
                             <div class="col-md-2">
-                            <input type="submit" class="btn btn-primary" value="Finalizar">
+                            <input type="submit" class="btn btn-primary" value="Buscar">
                                 
                             </div>
                         </div>

@@ -5,22 +5,55 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-
-                <div class="container-avatar">
-                    @if (session('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-        
-                    @endif
-                </div>
-                <div class="card-header">{{ __('Modificar datos de Cliente') }}</div>
+                <div class="card-header">{{ __('Modificar Personal Administrativo') }}</div>
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('user.updateUser') }}">
+                    <form method="POST" action="{{ route('user.update') }}">
                         @csrf
 
                         <input type="hidden" name="idUser" value="{{$user->id}}"/>
+
+                        <div class="row mb-3">
+                            <label for="loginCode" class="col-md-4 col-form-label text-md-end">{{ __('Codigo de Ingreso') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="loginCode" type="text" class="form-control @error('loginCode') is-invalid @enderror" name="loginCode" value="{{ $user->loginCode }}" required autocomplete="loginCode" autofocus>
+
+                                @error('loginCode')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <label for="rol" class="col-md-4 col-form-label text-md-end">{{ __('Rol') }}</label>
+
+<?php $rols=['Gerente','Ventas'];?>
+
+
+                            <div class="col-md-6">
+                                <select id="rol" class="form-control {{ $errors->has('rol') ? 'is-invalid' : '' }}" value="{{ $user->rol }}" name="rol" required/>
+                                <option value="">-- Escoja el rol --</option>
+
+                                    @foreach ($rols as $rol)
+                                        @if( $user->rol == $rol )
+                                            <option  selected="selected" value="{{ $user->rol }}">{{$user->rol}}</option>
+                                        @else
+                                            <option value=" {{$rol}} ">{{$rol}}</option>
+                                        @endif
+                                    @endforeach
+
+                                </select>
+
+                                @if ($errors->has('rol'))
+                            <span class="invalid-feedback" role="alert">
+                                <strong> {{$errors->first('rol')}} </strong>
+                            </span>
+                        @endif
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
@@ -43,6 +76,20 @@
                                 <input id="surname" type="text" class="form-control @error('surname') is-invalid @enderror" name="surname" value="{{ $user->surname }}" required autocomplete="surname" autofocus>
 
                                 @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="dni" class="col-md-4 col-form-label text-md-end">{{ __('DNI') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="dni" type="number" class="form-control @error('dni') is-invalid @enderror" name="dni" value="{{ $user->dni }}" required autocomplete="dni">
+
+                                @error('dni')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -137,7 +184,7 @@
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Finalizar
+                                    {{ __('Finalizar') }}
                                 </button>
                             </div>
                         </div>

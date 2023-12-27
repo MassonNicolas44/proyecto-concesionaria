@@ -18,9 +18,11 @@
                     <div class="card-header">{{ __('Lista de Vehiculos') }}</div>
                         <div class="card-body">
 
-                        <a href="{{ route('car.report')}}" ="sucess" class="btn btn-info btn-sm">Informe</a>
+                        <div class="report">
+                            <a href="{{ route('car.report')}}" ="sucess" class="btn btn-info">Generar Informe</a>
+                        </div>
 
-                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" style="text-align:center;">
                                 <thead>
                                     <th>Id</th>
                                     <th>Marca</th>
@@ -46,7 +48,7 @@
                                             <td>{{$car->color}}</td>
                                             <td>{{$car->description}}</td>
                                             <td>{{$car->stock}}</td>
-                                            <td>{{$car->price}}</td>
+                                            <td>$ {{$car->price}}</td>
                                             <td>{{$car->status}}</td>
                                             <td>
                                                 <div class="list">

@@ -40,17 +40,31 @@ Route::get('/cars/reportPDF', [App\Http\Controllers\CarController::class, 'repor
 Route::get('/cars/deleteImg/{id}/{idImg}', [App\Http\Controllers\CarController::class, 'deleteImg'])->name('image.deleteImg');
 
 //Usuario
-Route::get('/user/editAdmin', [App\Http\Controllers\UserController::class, 'editAdmin'])->name('user.editAdmin');
-Route::post('/user/updateAdmin', [App\Http\Controllers\UserController::class, 'updateAdmin'])->name('user.updateAdmin');
+Route::get('/customer/register', [App\Http\Controllers\CustomerController::class, 'create'])->name('customer.create');
+Route::post('/customers/save', [App\Http\Controllers\CustomerController::class, 'save'])->name('customer.save');
 
-Route::get('/user/editUser/{id}', [App\Http\Controllers\UserController::class, 'editUser'])->name('user.editUser');
-Route::post('/user/updateUser', [App\Http\Controllers\UserController::class, 'updateUser'])->name('user.updateUser');
+Route::get('/customer/edit/{id}', [App\Http\Controllers\CustomerController::class, 'edit'])->name('customer.edit');
+Route::post('/customer/update', [App\Http\Controllers\CustomerController::class, 'update'])->name('customer.update');
 
-Route::get('/user/list/{id?}/{status?}', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
+Route::get('/customer/list/{id?}/{status?}', [App\Http\Controllers\CustomerController::class, 'list'])->name('customer.list');
 
-Route::get('/user/reportPDF', [App\Http\Controllers\UserController::class, 'report'])->name('user.report');
+Route::get('/customer/reportPDF', [App\Http\Controllers\CustomerController::class, 'report'])->name('customer.report');
+
+Route::get('/customer/delete/{id?}', [App\Http\Controllers\CustomerController::class, 'delete'])->name('customer.delete');
+
+//Personal Administrativo
+Route::get('/user/register', [App\Http\Controllers\UserController::class, 'create'])->name('user.create');
+Route::post('/users/save', [App\Http\Controllers\UserController::class, 'save'])->name('user.save');
+
+Route::get('/user/edit/{id}', [App\Http\Controllers\UserController::class, 'edit'])->name('user.edit');
+Route::post('/user/update', [App\Http\Controllers\UserController::class, 'update'])->name('user.update');
+
+Route::get('/user/editConfig', [App\Http\Controllers\UserController::class, 'editConfig'])->name('user.editConfig');
+Route::post('/user/updateConfig', [App\Http\Controllers\UserController::class, 'updateConfig'])->name('user.updateConfig');
 
 Route::get('/user/delete/{id?}', [App\Http\Controllers\UserController::class, 'delete'])->name('user.delete');
+
+Route::get('/user/list/{id?}/{status?}', [App\Http\Controllers\UserController::class, 'list'])->name('user.list');
 
 //Marca
 Route::get('/brand/register', [App\Http\Controllers\BrandController::class, 'create'])->name('brand.create');

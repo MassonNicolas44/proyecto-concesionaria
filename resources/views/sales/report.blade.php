@@ -13,24 +13,25 @@
 
 <style>  
 
-.cabezera{
-    font-size:18px;
+table{
+    width: 100%;
+    text-align:center;
 }
 
-table {
-   width: 100%;
-   text-align:center; 
+th {
+    font-size:16px;
 }
 
-.contenido{
+td {
     font-size:14px;
 }
+
 </style>
 
     <body>
         <h3 class="text-center">Listado de Ventas</h3>
         <table class="table-bordered table-striped">
-            <thead class="cabezera">
+            <thead>
                 <th>Id</th>
                 <th>Vehiculo</th>
                 <th>Cliente</th>
@@ -39,7 +40,7 @@ table {
                 <th>Fecha Compra</th>
             </thead>
 
-            <tbody class="contenido">
+            <tbody>
                 @foreach($sales as $sale)
                 <tr>
                     <td>{{$sale->id}}</td>
@@ -52,5 +53,15 @@ table {
                 @endforeach
             </tbody>
         </table>
+
+    <script type="text/php">
+        if ( isset($pdf) ) {
+            $pdf->page_script('
+                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+                $pdf->text(270, 780, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+            ');
+        }
+	</script>
+
     </body>
 </html>

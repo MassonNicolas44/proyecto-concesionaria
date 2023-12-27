@@ -5,10 +5,13 @@
 
 .homeFilter{
     display:flex;
-    justify-content: center;
-    padding:15px;
-    margin:5px;
-    border: 1px solid #000;
+    justify-content: space-evenly;
+    margin:15px;
+  
+}
+
+.report{
+    margin-bottom:12px;
 }
 
 .image-container{
@@ -88,8 +91,12 @@
     font-size: 16px;
 }
 
-.list{
+.listCustomer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.listUser{
     display:flex;
     justify-content: space-evenly;
-
 }
