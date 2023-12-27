@@ -35,7 +35,7 @@ class BrandController extends Controller
     {
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'name' => ['required','min:1'],
+            'name' => ['required','min:1', 'unique:brands'],
         ] );
 
         //Se obtienen los datos
@@ -56,7 +56,7 @@ class BrandController extends Controller
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
             'brand_id' => ['required','min:1'],
-            'name' => ['required','min:1'],
+            'name' => ['required','min:1', 'unique:brands'],
         ] );
 
         //Se obtiene los datos

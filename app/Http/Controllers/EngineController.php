@@ -35,7 +35,7 @@ class EngineController extends Controller
     {
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'description' => ['required','min:1'],
+            'description' => ['required','min:1', 'unique:engines'],
         ] );
 
         //Se obtienen los datos
@@ -55,7 +55,7 @@ class EngineController extends Controller
     {
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'description' => ['required','min:1'],
+            'description' => ['required','min:1', 'unique:engines'],
         ] );
 
         //Se obtienen los datos

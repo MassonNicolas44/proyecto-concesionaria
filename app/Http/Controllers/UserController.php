@@ -87,7 +87,7 @@ class UserController extends Controller
         'password' => ['required', 'min:1' ,'string', 'max:255'],
         'name' => ['required', 'min:1' ,'string', 'max:255'],
         'surname' => ['required','min:1' , 'string', 'max:255'],
-        'dni' => ['required', 'min:1' ,'int'],
+        'dni' => ['required', 'min:1' ,'int', 'unique:users'],
         'email' => ['required', 'min:1' ,'string', 'email', 'max:255', 'unique:users'],
         'phone' => ['required', 'min:1' ,'int'],
         'address' => ['required', 'min:1' ,'string', 'max:255'],

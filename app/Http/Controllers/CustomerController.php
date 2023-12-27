@@ -29,8 +29,8 @@ class CustomerController extends Controller
        $validate = $this->validate($request, [
         'name' => ['required', 'min:1' ,'string', 'max:255'],
         'surname' => ['required','min:1' , 'string', 'max:255'],
-        'dni' => ['required', 'min:1' ,'int'],
-        'email' => ['required', 'min:1' ,'string', 'email', 'max:255', 'unique:users'],
+        'dni' => ['required', 'min:1' ,'int', 'unique:customers'],
+        'email' => ['required', 'min:1' ,'string', 'email', 'max:255', 'unique:customers'],
         'phone' => ['required', 'min:1' ,'int'],
         'address' => ['required', 'min:1' ,'string', 'max:255'],
         'postalCode' => ['required', 'min:1' ,'int'],
