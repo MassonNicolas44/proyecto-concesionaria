@@ -22,25 +22,42 @@
                         @csrf
 
                         <input type="hidden" name="car_id" value="{{$cars->id}}"/>
+                        <input type="hidden" name="user_id" value="{{Auth::user()->id}}"/>
 
                         <div class="row mb-3">
-                            <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Cliente') }}</label>
+                            <label for="customer_id" class="col-md-4 col-form-label text-md-end">{{ __('Cliente') }}</label>
 
                             <div class="col-md-6">
-                                <select id="user_id" class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}" value="{{ old('user_id') }}" name="user_id" required/>
+                                <select id="customer_id" class="form-control {{ $errors->has('customer_id') ? 'is-invalid' : '' }}" value="{{ old('user_id') }}" name="customer_id" required/>
                                 <option value="">-- Escoja el cliente --</option>
-                                    @foreach ($users as $user)
-                                        <option value="{{ $user['id'] }}">
-                                            {{$user['name']}} {{$user['surname']}}
+                                    @foreach ($customers as $customer)
+                                        <option value="{{ $customer['id'] }}">
+                                            {{$customer['name']}} {{$customer['surname']}}
                                         </option>
                                     @endforeach
                                 </select>
 
+                                @if ($errors->has('customer_id'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('customer_id')}} </strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="user_id" class="col-md-4 col-form-label text-md-end">{{ __('Vendedor') }}</label>
+
+                            <div class="col-md-6">
+                                <select id="user_id" class="form-control {{ $errors->has('user_id') ? 'is-invalid' : '' }}" value="{{ Auth::user()->id }}" name="user_id" disabled required/>
+                                <option value=" {{ Auth::user()->id }} "> {{ Auth::user()->name}} {{ Auth::user()->surname }} </option>
+                                </select>
+
                                 @if ($errors->has('user_id'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('user_id')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('user_id')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -83,10 +100,10 @@
                                 <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value=" {{ $cars->model }} " name="model" disabled required/>
 
                                 @if ($errors->has('model'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('model')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('model')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -97,10 +114,10 @@
                                 <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ $cars->year }}" name="year" disabled required/>
 
                                 @if ($errors->has('year'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('year')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('year')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -115,8 +132,8 @@
                                         <strong> {{$errors->first('color')}} </strong>
                                     </span>
                                 @endif
-                                    </div>
                                 </div>
+                            </div>
                        
                         <div class="row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion / Detalles') }}</label>
@@ -124,26 +141,9 @@
                             <div class="col-md-6">
                                 <textarea id="description" type="textarea" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ $cars->description }}" name="description" disabled required/>{{ $cars->description }}</textarea>
 
-
                                 @if ($errors->has('description'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong> {{$errors->first('description')}} </strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="door" class="col-md-4 col-form-label text-md-end">{{ __('Cantidad de Puertas') }}</label>
-
-                            <div class="col-md-6">
-                                <select id="door" type="text" class="form-control {{ $errors->has('door') ? 'is-invalid' : '' }}" value="{{ $cars->door }}" name="door" disabled required/>
-                                    <option value=" {{ $cars->door }} "> {{ $cars->door }}  </option>
-                                </select>
-
-                                @if ($errors->has('door'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong> {{$errors->first('door')}} </strong>
                                     </span>
                                 @endif
                             </div>
@@ -156,10 +156,10 @@
                                 <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ $cars->stock }}" name="stock" disabled required/>
 
                                 @if ($errors->has('stock'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('stock')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('stock')}} </strong>
+                                    </span>
+                                @endif
 
                             </div>
                         </div>
@@ -171,10 +171,10 @@
                                 <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ $cars->price }}" name="price" disabled required/>
 
                                 @if ($errors->has('price'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('price')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('price')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

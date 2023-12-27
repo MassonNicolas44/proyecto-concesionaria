@@ -27,10 +27,10 @@
                                 <input id="description" type="text" class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}" value="{{ old('description') }}" name="description" required/>
 
                                 @if ($errors->has('description'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('description')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('description')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -40,8 +40,6 @@
                                 </button>
                             </div>
                         </div>
-
-
                     </form>
                 </div>
             </div>

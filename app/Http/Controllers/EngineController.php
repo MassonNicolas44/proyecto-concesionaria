@@ -14,39 +14,31 @@ class EngineController extends Controller
 
     public function create()
     {
-
         return view('engines.create');
-
     }
 
     public function edit()
     {
-
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        //Se obtiene el objeto de Tipo de Motor y lo pasa por el view
         $engines=Engine::orderBy('description','asc')->get(); 
         return view('engines.edit',['engines'=>$engines]);
-
     }
 
     public function list()
     {
-
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        //Se obtiene el objeto de Tipo de Motor y lo pasa por el view
         $engines=Engine::orderBy('description','asc')->get(); 
         return view('engines.list',['engines'=>$engines]);
-
     }
 
     public function save(Request $request)
     {
-
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
             'description' => ['required','min:1'],
-        ]
-    );
+        ] );
 
-        //Traer datos
+        //Se obtienen los datos
         $description = $request->input('description');
 
         //Cargar valores
@@ -55,20 +47,18 @@ class EngineController extends Controller
 
         $engine->save();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la lista de Tipo de Motor
         return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor añadido correctamente']);
     }
 
     public function update(Request $request)
     {
-
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
             'description' => ['required','min:1'],
-        ]
-    );
+        ] );
 
-        //Traer datos
+        //Se obtienen los datos
         $engine_id = $request->input('engine_id');
         $description = $request->input('description');
 
@@ -78,7 +68,7 @@ class EngineController extends Controller
 
         $engine->update();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la lista de Tipo de Motor
         return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor editado correctamente']);
     }
 }

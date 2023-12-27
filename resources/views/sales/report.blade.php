@@ -27,13 +27,13 @@ td {
 }
 
 </style>
-
     <body>
         <h3 class="text-center">Listado de Ventas</h3>
         <table class="table-bordered table-striped">
             <thead>
                 <th>Id</th>
                 <th>Vehiculo</th>
+                <th>Vendedor</th>
                 <th>Cliente</th>
                 <th>Precio</th>
                 <th>Estado</th>
@@ -44,8 +44,9 @@ td {
                 @foreach($sales as $sale)
                 <tr>
                     <td>{{$sale->id}}</td>
-                    <td>({{$sale->car->id}})  {{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}}</td>
-                    <td>({{$sale->user->id}})  {{$sale->user->name}} {{$sale->user->surname}}</td>
+                    <td>{{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}} ({{$sale->car->id}})</td>
+                    <td>{{$sale->user->name}} {{$sale->user->surname}} ({{$sale->user->id}})</td>
+                    <td>{{$sale->customer->name}} {{$sale->customer->surname}} ({{$sale->customer->id}})</td>
                     <td>$ {{$sale->car->price}}</td>
                     <td>{{$sale->status}}</td>
                     <td>  {{$sale->created_at->format('d-m-Y')}}  </td>
@@ -54,14 +55,14 @@ td {
             </tbody>
         </table>
 
-    <script type="text/php">
-        if ( isset($pdf) ) {
-            $pdf->page_script('
-                $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
-                $pdf->text(270, 780, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
-            ');
-        }
-	</script>
+        <script type="text/php">
+            if ( isset($pdf) ) {
+                $pdf->page_script('
+                    $font = $fontMetrics->get_font("Arial, Helvetica, sans-serif", "normal");
+                    $pdf->text(270, 780, "Pág $PAGE_NUM de $PAGE_COUNT", $font, 10);
+                ');
+            }
+        </script>
 
     </body>
 </html>

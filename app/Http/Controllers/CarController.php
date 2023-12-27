@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Hamcrest\Description;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Engine;
-use Illuminate\Support\Facades\Storage;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -29,7 +26,7 @@ class CarController extends Controller
      */
     public function create()
     {
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        //Se obtienen los objetos de Marca y Tipo de Motor
         $brands=Brand::orderBy('name','asc')->get();
         $engines=Engine::orderBy('description','asc')->get();    
         return view('cars.create',compact('brands','engines'));
@@ -37,11 +34,12 @@ class CarController extends Controller
 
     public function edit($id)
     {
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        //Se obtiene el objeto Vehiculo (seleccionado por el Id), Marca y Tipo de Motor
         $cars=Car::find($id);
         $brands=Brand::orderBy('name','asc')->get();
         $engines=Engine::orderBy('description','asc')->get(); 
 
+        //Se obtiene el objeto Marca y Tipo de Motor mediante el Id del Vehiculo seleccionado
         $brandsCar=Brand::find($cars->brand_id);
         $enginesCar=Engine::find($cars->engine_id); 
 
@@ -61,10 +59,9 @@ class CarController extends Controller
             'description' => ['required','min:1', 'string', 'max:255'],
             'stock' => ['required','min:1','integer'],
             'price' => ['required','min:1','integer'],
-        ]
-    );
+        ] );
 
-        //Traer datos
+        //Se obtienen los datos
         $brand_id = $request->input('brand_id');
         $engine_id = $request->input('engine_id');
         $model = $request->input('model');
@@ -86,6 +83,7 @@ class CarController extends Controller
         $car->price = $price;
         $car->status = 'Habilitado';
 
+        //Verificacion si existe imagen a cargar
         if (request()->hasFile('image')){
 
             $car->addMultipleMediaFromRequest(['image'])
@@ -95,10 +93,9 @@ class CarController extends Controller
               
           }
 
-
         $car->save();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina al inicio
         return redirect()->route('home')->with(['message' => 'Vehiculo creado correctamente']);
     }
 
@@ -115,10 +112,9 @@ class CarController extends Controller
         'description' => ['required','min:1', 'string', 'max:255'],
         'stock' => ['required','min:1','integer'],
         'price' => ['required','min:1','integer'],
-    ]
-);
+    ] );
 
-    //Traer datos
+    //Se obtienen los datos
     $id = $request->input('idCar');
     $brand_id = $request->input('brand_id');
     $engine_id = $request->input('engine_id');
@@ -141,8 +137,10 @@ class CarController extends Controller
     $car->stock = $stock;
     $car->price = $price;
 
+    //Verificacion si existe imagen a cargar
     if (request()->hasFile('image')){
 
+        //Verificacion si se selecciono la opcion de eliminar las fotos anteriormente cargadas
         if($option_Image=="Eliminar"){
             $car->clearMediaCollection('cars');
         } 
@@ -156,35 +154,37 @@ class CarController extends Controller
 
     $car->update();
 
-    //Redireccion de la pagina
+    //Redireccion de la pagina al vehiculo editado
     return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'El Vehiculo se ha editado correctamente']);
-
     }
 
     public function delete($id)
     {
-        // Conseguir el objeto image
+        //Se consigue el objeto del Vehiculo con el Id seleccionado
         Car::with(['media'])->find($id)->delete();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina al inicio
         return redirect()->route('home')->with(['message' => 'El Vehiculo se ha eliminado correctamente']);
     }
 
     public function deleteImg($id,$idImg)
     {
-        // Conseguir el objeto image
+        //Se consigue la foto del vehiculo a eliminar
         Media::find($idImg)->delete();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina al vehiculo editado
         return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'La foto se ha eliminado correctamente']);
     }
 
     public function list($id=null,$status=null){
 
+        //Validacion para saber si debe actualizar el estatus del Vehiculo
         if($id!=null && $status!=null){
             
+            //Se obtiene el objeto del Vehiculo a modificar
             $car = Car::find($id);
 
+            //Validacion de actualizacion del Vehiculo
             if($status=="Deshabilitado"){
                 $car->status='Deshabilitado';
             }else{
@@ -194,8 +194,7 @@ class CarController extends Controller
             $car->update();
         }
 
-
-        //Trae la tabla de Usuarios y la pasa por el View
+        //Se obtiene el objeto del Vehiculo y lo ordena por nombre
         $cars=Car::orderBy('id','asc')->get(); 
 
         return view('cars.list', ['cars' => $cars]);
@@ -203,11 +202,8 @@ class CarController extends Controller
 
     public function report()
     {
-
         $cars=Car::all();
-
         $pdf=Pdf::loadView('cars.report',compact('cars'));
-
         return $pdf->stream('car_report.pdf');
     }
 

@@ -7,9 +7,6 @@
             <div class="card">
                 <div class="card-header">{{ __('Ingresar') }}</div>
 
-                Codigo de ingreso: ventas
-Contraseña: 12345
-
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
@@ -48,11 +45,6 @@ Contraseña: 12345
                                     {{ __('Ingresar') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Te olvidaste la contraseña?') }}
-                                    </a>
-                                @endif
                             </div>
                         </div>
                     </form>

@@ -36,10 +36,9 @@ class CustomerController extends Controller
         'postalCode' => ['required', 'min:1' ,'int'],
         'city' => ['required', 'min:1' ,'string', 'max:255'],
         'province' => ['required', 'min:1' ,'string', 'max:255'],
-        ]
-    );
+        ] );
 
-        //Traer datos
+        //Se obtienen los datos
         $name = $request->input('name');
         $surname = $request->input('surname');
         $dni = $request->input('dni');
@@ -66,15 +65,13 @@ class CustomerController extends Controller
 
         $customer->save();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la lista de Clientes
         return redirect()->route('customer.list')->with(['message' => 'Cliente agrego correctamente']);
     }
 
     public function edit($id){
-
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
+        //Se obtiene el objeto del Cliente con el Id seleccionado
         $customers=Customer::find($id);
-
         return view('customers.edit',['customer'=>$customers]);
     }
 
@@ -93,8 +90,7 @@ class CustomerController extends Controller
             'province' => ['required','min:1', 'string', 'max:255'],
         ]);
 
-
-            //Traer datos
+            //Se obtienen los datos
             $id = $Request->input('idCustomer');
             $name = $Request->input('name');
             $surname = $Request->input('surname');
@@ -121,18 +117,20 @@ class CustomerController extends Controller
 
             $customer->update();
 
-            //Redireccion de la pagina
+            //Redireccion de la pagina a la lista de Clientes
             return redirect()->route('customer.list')->with(['message' => 'Cliente actualizado correctamente']);
 
     }
 
     public function list($id=null,$status=null){
 
-
+        //Validacion para saber si debe actualizar el estatus del Cliente
         if($id!=null && $status!=null){
             
+            //Se obtiene el objeto del Cliente a modificar
             $customer = Customer::find($id);
 
+            //Validacion de actualizacion del Cliente
             if($status=="Deshabilitado"){
                 $customer->status='Deshabilitado';
             }else{
@@ -142,27 +140,24 @@ class CustomerController extends Controller
             $customer->update();
         }
 
-        //Trae la tabla de Usuarios y la pasa por el View
+        //Ordena la tabla obtenida por el Nombre
         $customers=Customer::orderBy('name','asc')->get(); 
         return view('customers.list',['customers'=>$customers]);
     }
 
     public function delete($id)
     {
-        // Conseguir el objeto image
+        //Se obtiene el objeto del Cliente con el Id a eliminar
         Customer::find($id)->delete();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la lista de Clientes
         return redirect()->route('customer.list')->with(['message' => 'El Cliente se ha eliminado correctamente']);
     }
 
     public function report()
     {
-
         $customers=Customer::orderBy('name','asc')->get();
-
         $pdf=Pdf::loadView('customers.report',compact('customers'));
-
         return $pdf->stream('customer_report.pdf');
     }
 }

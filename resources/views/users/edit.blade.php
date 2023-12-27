@@ -30,14 +30,15 @@
                         <div class="row mb-3">
                             <label for="rol" class="col-md-4 col-form-label text-md-end">{{ __('Rol') }}</label>
 
-<?php $rols=['Gerente','Ventas'];?>
-
+                            <!-- Array para luego ser recorrido -->
+                            <?php $rols=['Gerente','Ventas'];?>
 
                             <div class="col-md-6">
                                 <select id="rol" class="form-control {{ $errors->has('rol') ? 'is-invalid' : '' }}" value="{{ $user->rol }}" name="rol" required/>
                                 <option value="">-- Escoja el rol --</option>
 
                                     @foreach ($rols as $rol)
+                                        <!-- Verificacion si el valor a cargar es igual al valor que existe en la Base de Datos -->
                                         @if( $user->rol == $rol )
                                             <option  selected="selected" value="{{ $user->rol }}">{{$user->rol}}</option>
                                         @else
@@ -48,10 +49,10 @@
                                 </select>
 
                                 @if ($errors->has('rol'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('rol')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('rol')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

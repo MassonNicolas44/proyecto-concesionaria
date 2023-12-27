@@ -26,10 +26,10 @@
                             <div class="col-md-6">
                                 <input id="loginCode" type="text" class="form-control {{ $errors->has('loginCode') ? 'is-invalid' : '' }}" value="{{ Auth::user()->loginCode }}" name="loginCode" required/>
                                 @if ($errors->has('loginCode'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('loginCode')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('loginCode')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

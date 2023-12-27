@@ -59,6 +59,7 @@
                             <a class="nav-link" href=" {{ route('home')}} ">Inicio </a>
                         </li>
 
+                        <!-- Validacion del status de la Persona Logeada -->
                         @if(Auth::user()->status=="Habilitado")
 
                             <li class="nav-item dropdown">
@@ -148,6 +149,7 @@
 
                             </li>
 
+                            <!-- Validacion del rol de la Persona Logeada -->
                             @if(Auth::user()->rol=="Administrador")
 
                                 <li class="nav-item dropdown">

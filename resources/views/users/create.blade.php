@@ -50,10 +50,10 @@
                                 </select>
 
                                 @if ($errors->has('rol'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('rol')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('rol')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 

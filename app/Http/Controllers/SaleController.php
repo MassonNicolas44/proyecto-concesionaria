@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Engine;
-use App\Models\User;
+use App\Models\Customer;
 use App\Models\Sale;
 
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -20,16 +20,16 @@ class SaleController extends Controller
 
     public function create($id)
     {
-
-        //Trae datos de la Base de Datos y se envian por el View
+        //Se obtienen los objetos necesarios y los pasa por el View
         $cars=Car::find($id);  
         $brands=Brand::find($cars->brand_id);  
         $engines=Engine::find($cars->engine_id);  
-        $users=User::where('status','LIKE','Habilitado')
-        ->where('rol','LIKE','Cliente')
+
+        //Filtra al los clientes por su estado de Habilitado
+        $customers=Customer::where('status','LIKE','Habilitado')
         ->orderBy('name','asc')->get();   
 
-        return view('sales.create',compact('cars','brands','engines','users'));
+        return view('sales.create',compact('cars','brands','engines','customers'));
     }
 
     public function save(Request $request)
@@ -37,14 +37,15 @@ class SaleController extends Controller
 
         //Validacion de datos antes de cargar
        $validate = $this->validate($request, [
-            'user_id' => ['required'],
+            'customer_id' => ['required'],
             'car_id' => ['required'],
-        ]
-    );
+            'user_id' => ['required'],
+        ] );
 
-        //Traer datos
-        $user_id = $request->input('user_id');
+        //Se obtienen los datos
+        $customer_id = $request->input('customer_id');
         $car_id = $request->input('car_id');
+        $user_id = $request->input('user_id');
 
         //Descuento del stock
         $car=Car::find($car_id);
@@ -52,23 +53,25 @@ class SaleController extends Controller
 
         //Cargar valores
         $sale= New Sale;
-        $sale->user_id=$user_id;
+        $sale->customer_id=$customer_id;
         $sale->car_id=$car_id;
+        $sale->user_id=$user_id;
         $sale->status='Vendido';
 
         $car->update();
         $sale->save();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la vista de Inicio
         return redirect()->route('home')->with(['message' => 'Venta registrada correctamente']);
     }
     
     public function delete($idSale,$idCar)
     {
-
+        //Se obtiene el objeto de Venta y el Vehiculo
         $sale=Sale::find($idSale);
         $car=Car::find($idCar);
 
+        //Se descuenta el stock y se anula la venta
         $car->stock=($car->stock)+1;
         $sale->status='Anulada';
 
@@ -77,26 +80,20 @@ class SaleController extends Controller
 
         $sales=Sale::all();
 
+        //Redireccion de la pagina de la lista de ventas
         return redirect()->route('sale.list', ['sales' => $sales])->with(['message' => 'Venta anulada correctamente']);
-
     }
 
     public function list()
     {
-
         $sales=Sale::all();
-
         return view('sales.list', ['sales' => $sales]);
-
     }
 
     public function report()
     {
-
         $sales=Sale::all();
-
         $pdf=Pdf::loadView('sales.report',compact('sales'));
-
         return $pdf->stream('sale_report.pdf');
     }
     

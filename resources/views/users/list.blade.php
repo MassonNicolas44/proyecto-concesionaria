@@ -51,6 +51,7 @@
                                             <td>{{$user->status}}</td>
                                             <td>
                                                 <div class="listUser">
+                                                    <!-- Validacion del estado del Personal Administrativo -->
                                                     @if($user->status=="Habilitado")
                                                         <a href="{{ route('user.list',['id'=>$user->id,'status'=>'Deshabilitado']) }}" ="sucess" class="btn btn-danger btn-sm"> Deshabilitar</a>
                                                     @else

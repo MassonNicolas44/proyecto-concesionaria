@@ -52,6 +52,7 @@
                                             <td>{{$car->status}}</td>
                                             <td>
                                                 <div class="list">
+                                                    <!-- Validacion del estado del Vehiculo -->
                                                     @if($car->status=="Habilitado")
                                                         <a href="{{ route('car.list',['id'=>$car->id,'status'=>'Deshabilitado']) }}" ="sucess" class="btn btn-danger btn-sm"> Deshabilitar</a>
                                                     @else

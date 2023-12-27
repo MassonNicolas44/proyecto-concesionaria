@@ -20,6 +20,13 @@ class UserController extends Controller
         return view('users.create');
     }
 
+    public function edit($id){
+        //Trae la tabla de User desde la base de datos y la pasa por el View
+        $users=User::find($id);
+
+        return view('users.edit',['user'=>$users]);
+    }
+
     public function update(Request $request)
     {
         //Validacion de datos antes de cargar
@@ -34,8 +41,7 @@ class UserController extends Controller
         'postalCode' => ['required', 'min:1' ,'int'],
         'city' => ['required', 'min:1' ,'string', 'max:255'],
         'province' => ['required', 'min:1' ,'string', 'max:255'],
-        ]
-    );
+        ] );
 
         //Traer datos
         $id = $request->input('idUser');
@@ -53,7 +59,6 @@ class UserController extends Controller
  
         //Cargar valores
         $user=User::find($id);
-
         $user->loginCode=$loginCode;
         $user->name=$name;
         $user->surname=$surname;
@@ -68,7 +73,7 @@ class UserController extends Controller
 
         $user->update();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina a la lista de Personal Administrativo
         return redirect()->route('user.list')->with(['message' => 'Personal Administrativo actualizado correctamente']);
     }
 
@@ -90,8 +95,7 @@ class UserController extends Controller
         'city' => ['required', 'min:1' ,'string', 'max:255'],
         'province' => ['required', 'min:1' ,'string', 'max:255'],
         'rol' => ['required', 'min:1' ,'string', 'max:255'],
-        ]
-    );
+        ] );
 
         //Traer datos
         $loginCode = $request->input('loginCode');
@@ -126,90 +130,87 @@ class UserController extends Controller
 
         $user->save();
 
-        //Redireccion de la pagina
+        //Redireccion de la pagina al inicio
         return redirect()->route('home')->with(['message' => 'Personal Administrativo agrego correctamente']);
     }
 
 
-    public function edit($id){
-
-        //Trae la tabla de Marca y Motor desde la base de datos y la pasa por el View
-        $users=User::find($id);
-
-        return view('users.edit',['user'=>$users]);
-    }
 
     public function editConfig(){
-
         return view('users.editConfig');
     }
 
     public function updateConfig(Request $Request){
 
+        //Se obtienen los datos de la persona logeada
         $user=\Auth::User();
 
         //Validacion de datos antes de cargar
-       $validate = $this->validate($Request, [
+        $validate = $this->validate($Request, [
         'loginCode' => ['required','min:1', 'max:255'],
-            ]
-        );
+            ] );
 
-    //Traer datos
-    $loginCode = $Request->input('loginCode');
-    $oldPassword=$Request->input('oldPassword');
-    $newPassword=$Request->input('newPassword');
-    $confirmPassword=$Request->input('confirmPassword');
+        //Se obtienen los datos
+        $loginCode = $Request->input('loginCode');
+        $oldPassword=$Request->input('oldPassword');
+        $newPassword=$Request->input('newPassword');
+        $confirmPassword=$Request->input('confirmPassword');
 
-    //Cargar valores
-    $user->loginCode = $loginCode;
+        //Cargar valores
+        $user->loginCode = $loginCode;
 
-    // Ver el ejemplo de password_hash() para ver de dónde viene este hash. 
+        //Validacion de que exista los 3 campos de las contraseñas
+        if($oldPassword && $newPassword && $confirmPassword) {
 
-    if($oldPassword && $newPassword && $confirmPassword) {
+            //Comparacion entre la contraseña antigua ingresada con la contraseña en la BD
+            if (password_verify($oldPassword, $user->password)) {
 
-        if (password_verify($oldPassword, $user->password)) {
+                //Comparacion entre la nueva contraseña y la confirmacion de la misma
+                if($newPassword==$confirmPassword){
 
-            if($newPassword==$confirmPassword){
+                    //Cifrado de la contraseña para ser cargada en la BD
+                    $user->password=Hash::make($newPassword);
 
-                $user->password=Hash::make($newPassword);
+                }else{
 
-            }else{
+                    //Redireccion de la pagina a la misma vista, mostrando el error
+                    return redirect()->route('user.editConfig')->with(['message' => 'No coincide la nueva contraseña con la confirmacion de la contraseña']);
 
-                return redirect()->route('user.editConfig')->with(['message' => 'No coincide la nueva contraseña con la confirmacion de la contraseña']);
+                }
 
+            } else {
+
+                //Redireccion de la pagina a la misma vista, mostrando el error
+                return redirect()->route('user.editConfig')->with(['message' => 'No coincide la contraseña ingresada con la antigua']);
             }
 
-        } else {
-
-            return redirect()->route('user.editConfig')->with(['message' => 'No coincide la contraseña ingresada con la antigua']);
         }
 
-    }
+        $user->update();
 
-    $user->update();
-
-    //Redireccion de la pagina
-    return redirect()->route('user.editConfig')->with(['message' => 'Datos modificados correctamente']);
-
+        //Redireccion de la pagina a la misma vista
+        return redirect()->route('user.editConfig')->with(['message' => 'Datos modificados correctamente']);
 
     }
 
     public function delete($id)
     {
-        // Conseguir el objeto image
+        //Se obtiene el objeto desde el Id del Personal Administrativo a eliminar
         User::find($id)->delete();
 
-        //Redireccion de la pagina
-        return redirect()->route('user.list')->with(['message' => 'El Persoanl se ha eliminado correctamente']);
+        //Redireccion de la pagina a la lista del Personal Administrativo
+        return redirect()->route('user.list')->with(['message' => 'El Personal se ha eliminado correctamente']);
     }
 
     public function list($id=null,$status=null){
 
-
+        //Validacion para saber si debe actualizar el estatus del Personal Administrativo
         if($id!=null && $status!=null){
             
+            //Se obtiene el objeto del Personal a modificar
             $user = User::find($id);
 
+            //Validacion de actualizacion del Personal
             if($status=="Deshabilitado"){
                 $user->status='Deshabilitado';
             }else{
@@ -219,7 +220,7 @@ class UserController extends Controller
             $user->update();
         }
 
-        //Trae la tabla de Usuarios y la pasa por el View
+        //Ordena la tabla obtenida por el Nombre
         $users=User::orderBy('name','asc')->get(); 
         return view('users.list',['users'=>$users]);
     }

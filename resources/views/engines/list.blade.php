@@ -22,11 +22,11 @@
                     <div class="row mb-3">
                         <div class="col-md-6">
                             <ul type=”A”>
-                            <div class="textFont">
-                                    @foreach ($engines as $engine)
-                                        <li>{{$engine['description']}}</li>
-                                    @endforeach
-                            </div>
+                                <div class="textFont">
+                                        @foreach ($engines as $engine)
+                                            <li>{{$engine['description']}}</li>
+                                        @endforeach
+                                </div>
                             </ul>
                         </div>
                     </div>

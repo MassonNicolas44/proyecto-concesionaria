@@ -41,12 +41,10 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            
                             </div>
                             
                             <div class="col-md-2">
-                            <input type="submit" class="btn btn-primary" value="Buscar">
-                                
+                                <input type="submit" class="btn btn-primary" value="Buscar">
                             </div>
                         </div>
                     </form>

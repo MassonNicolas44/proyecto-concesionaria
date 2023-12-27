@@ -29,7 +29,8 @@
                                 <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ $brandsCar->id }}" name="brand_id" required/>
                                 <option value="">-- Escoja la marca --</option>
                                     @foreach ($brands as $brand)
-                                                  
+                                        
+                                        <!-- Verificacion si el valor a cargar es igual al valor que existe en la Base de Datos -->
                                         @if( $brandsCar->id == $brand['id'] )
                                             <option  selected="selected" value="{{ $brand['id'] }}">{{$brandsCar->name}}</option>
                                         @else
@@ -40,10 +41,10 @@
                                 </select>
 
                                 @if ($errors->has('brand_id'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('brand_id')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('brand_id')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -56,6 +57,7 @@
                                 <option value="">-- Escoja el tipo de motor --</option>
                                     @foreach ($engines as $engine)
 
+                                        <!-- Verificacion si el valor a cargar es igual al valor que existe en la Base de Datos -->
                                         @if( $enginesCar->id == $engine['id'] )
                                             <option  selected="selected" value="{{ $engine['id'] }}">{{$enginesCar->description}}</option>
                                         @else
@@ -80,10 +82,10 @@
                                 <input id="model" type="text" class="form-control {{ $errors->has('model') ? 'is-invalid' : '' }}" value="{{ $cars->model }}" name="model" required/>
 
                                 @if ($errors->has('model'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('model')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('model')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -94,10 +96,10 @@
                                 <input id="year" type="number" class="form-control {{ $errors->has('year') ? 'is-invalid' : '' }}" value="{{ $cars->year }}" name="year" required/>
 
                                 @if ($errors->has('year'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('year')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('year')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -112,8 +114,8 @@
                                         <strong> {{$errors->first('color')}} </strong>
                                     </span>
                                 @endif
-                                    </div>
-                                </div>
+                            </div>
+                        </div>
                        
                         <div class="row mb-3">
                             <label for="description" class="col-md-4 col-form-label text-md-end">{{ __('Descripcion / Detalles') }}</label>
@@ -136,11 +138,11 @@
                             <div class="col-md-6">
                                 <input id="stock" type="number" class="form-control {{ $errors->has('stock') ? 'is-invalid' : '' }}" value="{{ $cars->stock }}" name="stock" required/>
 
-                        @if ($errors->has('stock'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('stock')}} </strong>
-                            </span>
-                        @endif
+                                @if ($errors->has('stock'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('stock')}} </strong>
+                                    </span>
+                                @endif
 
                             </div>
                         </div>
@@ -152,10 +154,10 @@
                                 <input id="price" type="number" class="form-control {{ $errors->has('price') ? 'is-invalid' : '' }}" value="{{ $cars->price }}" name="price" required/>
 
                                 @if ($errors->has('price'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong> {{$errors->first('price')}} </strong>
-                            </span>
-                        @endif
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong> {{$errors->first('price')}} </strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -180,15 +182,15 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="image" class="col-md-4 col-form-label text-md-end">Imagen</label>
-                                <div class="col-md-6">
-                                    <input id="image" type="file" name="image[]" multiple class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} " />
-                                     @if ($errors->has('image'))
-                                        <span class="invalid-feeback" role="alert">
-                                            <strong> {{$errors->first('image')}} </strong>
-                                        </span>
-                                     @endif
-                                </div>
+                        <label for="image" class="col-md-4 col-form-label text-md-end">Imagen</label>
+                            <div class="col-md-6">
+                                <input id="image" type="file" name="image[]" multiple class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }} " />
+                                 @if ($errors->has('image'))
+                                    <span class="invalid-feeback" role="alert">
+                                        <strong> {{$errors->first('image')}} </strong>
+                                    </span>
+                                 @endif
+                            </div>
                         </div>
                        
 

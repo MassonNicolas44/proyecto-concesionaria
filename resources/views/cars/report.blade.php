@@ -46,22 +46,18 @@ td {
 
             <tbody>
                 @foreach($cars as $car)
-                <tr>
-                    <td style="width:30px">{{$car->id}}</td>
-                    <td>{{$car->brand->name}}</td>
-                    <td>{{$car->model}}</td>
-                    <td style="width:40px">{{$car->year}}</td>
-                    <td>{{$car->engine->description}}</td>
-                    <td>{{$car->color}}</td>
-                    <td>{{$car->description}}</td>
-                    <td style="width:40px">{{$car->stock}}</td>
-                    <td>$ {{$car->price}}</td>
-                    <td>{{$car->status}}</td>
-
-
-
-
-                </tr>
+                    <tr>
+                        <td style="width:30px">{{$car->id}}</td>
+                        <td>{{$car->brand->name}}</td>
+                        <td>{{$car->model}}</td>
+                        <td style="width:40px">{{$car->year}}</td>
+                        <td>{{$car->engine->description}}</td>
+                        <td>{{$car->color}}</td>
+                        <td>{{$car->description}}</td>
+                        <td style="width:40px">{{$car->stock}}</td>
+                        <td>$ {{$car->price}}</td>
+                        <td>{{$car->status}}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
