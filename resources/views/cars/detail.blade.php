@@ -40,7 +40,7 @@
                             <img src="{{ asset ('storage/'.$idImg.'/conversions/'.$img.'-thumb.jpg') }}" >
                         @endif
                     @else
-                        <img src="{{ asset ('storage/noImagen.png') }}" width="600px" height ="450px"  >
+                        <img src="{{ asset ('storage/noImagen.png') }}"  >
                     @endif
 
                 </div>
@@ -50,7 +50,7 @@
                     @foreach ($imageCar->media as $imgCar)
                         <div class="imageDelete">
                             <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
-                                <img style="width: 150px;" alt="" src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
+                                <img src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
                             </a>
                             <!-- Validacion de si existe Personal Administrativo Logeado -->
                             @if(Auth::user())

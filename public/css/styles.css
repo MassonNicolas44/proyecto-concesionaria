@@ -3,6 +3,11 @@
     justify-content: center;
 }
 
+.image-container-home img{
+    width:90%;
+    height:auto;
+}
+
 .homeFilter{
     display:flex;
     justify-content: space-evenly;
@@ -22,10 +27,9 @@
     border: 1px solid #000;
 }
 
-.imageDelete{
-    display:block;
-    justify-content: center;
-    text-align: center;
+.image-container img{
+    width:75%;
+    height:auto;
 }
 
 .homeButtonHome{
@@ -78,11 +82,23 @@
 }
 
 .foreachImage img{
-    display:block;
-    text-align: center;
     padding:1px;
     margin:5px;
     border: 2px solid #000;
+}
+
+.imageDelete{
+    display:flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.imageDelete img{
+    width:150px;
+    height:auto;
 }
 
 .description{

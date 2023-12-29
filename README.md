@@ -1,66 +1,171 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Nombre del Proyecto: Concesionaria Tutankamon
 
-## About Laravel
+------------------------------------------------------------------------------------------------------------
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Persona a cargo de la administracion y programacion del proyecto:  Masson Nicolas
+Link de la pagina de inicio: http://proyecto-concesionaria.com/home
+------------------------------------------------------------------------------------------------------------
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Requisitos de desarrolo para la integracion:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+WampServer: Version 3.3.0 64 Bits
+Visual Studios: 1.84.2
 
-## Learning Laravel
+------------------------------------------------------------------------------------------------------------
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Tecnologias utilizadas:
+PHP: Version 8.2
+Apache: Version 2.4.54
+MySql: Version 8.0.31
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Laravel: Version 10.10
+Bootstrap: Version 5.2.3
+Jquery: Version 3.7.1
+barryvdh/laravel-dompdf (Para la gestion de los informes en PDF) : Version 2.0
+Spatie/Laravel-medialibrary (Para la gestion de imagenes) : Version 10.0
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+------------------------------------------------------------------------------------------------------------
 
-## Laravel Sponsors
+Descripcion general:
+La pagina web fue creada para la gestion de una concesionaria, realizando las siguientes acciones:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+*Vehiculo*
+-En la parte de alta se tendra que registrar los siguientes datos (Marca, Tipo de Motor, Modelo, Año, Color, Descripcion, Stock, Precio y/o Imagenes).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+-En la modificacion del mismo, tiene los mismos datos que en el alta, el unico cambio se da en la parte de Imagenes teniendo 3 opciones No realizar ningun cambio/Agregar a las imagenes existentes/Borrar todas las imagenes y cargar nuevas.
 
-## Contributing
+-En el listado se podra Habilitar y Deshabilitar un vehiculo para que pueda ser utilizado o no.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+*Marca de Vehiculo*
+-En el alta se ingresa solo el nombre a ingresar
+-En la modificacion se procede a seleccionar una marca y luego modificar el nombre
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-## Security Vulnerabilities
+*Tipo de Motor de Vehiculo*
+-En el alta se ingresa solo el nombre a ingresar
+-En la modificacion se procede a seleccionar un tipo de motor y luego modificar el nombre
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+*Cliente*
+-En la parte de alta se tendra que registrar los siguientes datos (Nombre, Apellido, DNI, Email, Telefono, Direccion, Codigo Postal, Ciudad, Provincia).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+-En la modificacion del mismo, tiene los mismos datos que en el alta.
+
+-En el listado se podra Habilitar y Deshabilitar un cliente para que pueda ser utilizado o no al momento de realizar un informe o registrar una venta.
+
+
+*Venta*
+-En el listado se podra Anular una venta realizada. Teniendo una tabla mostrando los siguientes datos Id (De la venta), Vehiculo (marca, modelo, año y Id del mismo), Vendedor (Nombre completo, Id del mismo), Cliente (Nombre completo, Id del mismo), Estado, Precio, Fecha Compra, Fecha Actualizacion.
+
+
+En la parte superior tenemos la barra de navegacion, la cual esta compuesta por los siguientes items y desplegables
+-Inicio
+-Vehiculo (Listado, Añadir)
+-Marca (Listado, Añadir, Modificar)
+-Tipo de Motor (Listado, Añadir, Modificar)
+-Cliente (Listado, Añadir)
+-Ventas
+-Nombre de la persona logeada (Configuracion [Se podra actualizar la clave de inicio de session y tambien podes cambiar la contraseña] , Salir)
+
+------------------------------------------------------------------------------------------------------------
+
+Datos Adicionales:
+/Si la persona logeada es el administrador, se añade la parte de Alta/Baja/Modificacion/Habilitacion para el personal administrativo.
+/Para la vista de la pagina web sin estar logeado, solo se podran ver los vehiculos, fotos y descripcion de los mismos.
+/Tanto al estar logeado como cuando no, existe un filtrado de vehiculo por Marcas y/o Tipo de Motor.
+/Si un vehiculo o cliente quiere ser eliminado, no debe estar relacion con ninguna venta, caso contrario, solo se podra Deshabiltiar el mismo para que no pueda ser usado en el sistema.
+
+
+Clave de ingreso del administrador: Admin
+Contraseña: 123
+
+------------------------------------------------------------------------------------------------------------
+
+Estado del proyecto: Terminado
+
+------------------------------------------------------------------------------------------------------------
+
+Registro de actividad:
+
+17/11/23 
+acomodar el tamaño de la imagen al inicio
+redireccionar al hacer click en "ver mas imagenes"
+
+21/11/23
+mostrar todas las imagenes en miniatura
+
+25/11/23
+al hacer click cambiar de imagen
+
+27/11/23
+maquetado de las iamgenes
+
+29/11/23
+Verificado qeu las imagenes con espacio las toma de igual manera
+
+30/11/23
+actualizar mas fotos
+testeo de borrado de 1 sola foto
+
+1/12/23
+poner la opcion de agregar 1 o mas fotos en el update
+
+3/12/23
+Testeado el eliminar las carpetas de las fotos cargadas al eliminar la foto
+Testeado el eliminar las carpetas de las fotos al eliminar un vehiculo
+
+4/12/23
+se agrego item para seleccionar configuracion de usuario
+Testeo de modificacion de usuario
+
+6/12/23
+Se creo y modifico Tipo de Motor
+Se creo y modifico Marca
+Se testeo guardado y modificacion de Tipo de Motor
+Se testeo guardado y modificacion de Marca
+cambiar nombre de "laravel" al inicio del proyecto
+
+9/12/23
+Creo la vista de venta de Vehiculo
+Testeo de venta y descuento en el stock al terminar la misma
+
+12/12/23
+Testeo de restriccion de accesibilidad tanto del usuario como del administrador
+si no hay stock de vehiculo que no lo muestro al cliente (si para ser editado por si hay que agregar)
+registrar la venta de un vehiculo
+revisar que al realizar la venta se descuente el stock
+separar las paginas de "marca" , "tipo de motor" y "Cliente"
+
+13/12/23
+Se crearon las vistas y testeo de la parte de "Marca","Tipo de motor","Clientes"
+Se añadio una lista de Clientes y Vehiculos
+
+14/12/23
+Se testeo la restriccion de personal logeado a cada pagina
+Se añadio el estado de Habilitar y Deshabilitar tanto a un vehiculo como un usuario
+
+15/12/23
+Se añadio una lista de Ventas
+Se testeo la eliminacion de una venta y la actualizacion del stock
+
+19/12/23
+Se testeo la validacion de campos
+Se agrego un buscado por Marca y/o Tipo de Motor
+
+22/12/23
+Se agrego reportes para Clientes, Vehiculos y Ventas
+
+23/12/23
+Se agrego la opcion que el administrador pueda cambiar la contraseña
+
+25/12/23
+Se restringio la parte de Personal Administrativo solamente al Administrador
+
+27/12/23
+Se modifico y testeo el cambio de clave de acceso y/o contraseña
+Si el personal Administrativo no esta habilitado, no podra ingresar a ninguna solapa dentro del sistema
+Proyecto comentado y Codigo organizado
+Se agrego la validacion de valores unicos para los campos de las tablas
