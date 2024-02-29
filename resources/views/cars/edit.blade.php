@@ -6,16 +6,9 @@
         <div class="col-md-8">
             <div class="card">
 
-            <div class="container-avatar">
-                @if (session('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-       
-                @endif
-            </div>
+            @include('includes.message')
 
-                <div class="card-header">{{ __('Modificar Vehiculo') }}</div>
+                <div class="card-header">{{ __('Modificando el vehiculo: '.$cars->brand->name.' '.$cars->model.' ('.$cars->year.')') }}</div>
                 <div class="card-body">
                     <form method="POST" enctype="multipart/form-data" action="{{ route('car.update') }}">
                         @csrf
@@ -206,4 +199,5 @@
         </div>
     </div>
 </div>
+@include('includes.footer')
 @endsection

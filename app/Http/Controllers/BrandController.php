@@ -48,7 +48,7 @@ class BrandController extends Controller
         $brand->save();
 
         //Redireccion de la pagina a la lista de Marcas
-        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo añadida correctamente']);
+        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo "'.$name.'" añadida correctamente']);
     }
 
     public function update(Request $request)
@@ -71,7 +71,7 @@ class BrandController extends Controller
         $brand->update();
 
         //Redireccion de la pagina a la lista de Marcas
-        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo editada correctamente']);
+        return redirect()->route('brand.list')->with(['message' => 'Marca de vehiculo "'.$name.'" editada correctamente']);
     }
 
 }

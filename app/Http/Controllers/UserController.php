@@ -74,7 +74,7 @@ class UserController extends Controller
         $user->update();
 
         //Redireccion de la pagina a la lista de Personal Administrativo
-        return redirect()->route('user.list')->with(['message' => 'Personal Administrativo actualizado correctamente']);
+        return redirect()->route('user.list')->with(['message' => 'Personal Administrativo '.$name.' '.$surname.' actualizado correctamente']);
     }
 
 
@@ -131,7 +131,7 @@ class UserController extends Controller
         $user->save();
 
         //Redireccion de la pagina al inicio
-        return redirect()->route('home')->with(['message' => 'Personal Administrativo agrego correctamente']);
+        return redirect()->route('user.list')->with(['message' => 'Personal Administrativo '.$name.' '.$surname.' con el rol de '.$rol.' agregado correctamente']);
     }
 
 
@@ -195,11 +195,15 @@ class UserController extends Controller
 
     public function delete($id)
     {
+
+        $name=User::find($id)->name;
+        $surname=User::find($id)->surname;
+
         //Se obtiene el objeto desde el Id del Personal Administrativo a eliminar
         User::find($id)->delete();
 
         //Redireccion de la pagina a la lista del Personal Administrativo
-        return redirect()->route('user.list')->with(['message' => 'El Personal se ha eliminado correctamente']);
+        return redirect()->route('user.list')->with(['message' => 'El Personal '.$name.' '.$surname.'  se ha eliminado correctamente']);
     }
 
     public function list($id=null,$status=null){

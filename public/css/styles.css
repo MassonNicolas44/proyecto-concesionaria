@@ -12,7 +12,7 @@
     display:flex;
     justify-content: space-evenly;
     margin:15px;
-  
+    font-size: 18px;
 }
 
 .report{
@@ -33,43 +33,47 @@
 }
 
 .homeButtonHome{
-    display:flex;
-    justify-content: space-between;
+    overflow:hidden;
     padding:10px;
-    margin:5px;
+    padding-top:20px;
 }
 
 .homeButton1 .btn{
-    width: 165%;
+    width: 32%;
     font-size: 20px;
-    margin-left:60%;
+    float: left;
+    margin-left:15%;
 }
 
 .homeButton2 .btn{
-    width: 210%;
+    width: 32%;
     cursor: not-allowed;
     font-size: 20px;
-    margin-left:-185%;
+    float: right;
+    margin-right:15%;
 }
 
 .homeButton3 .btn{
-    width: 180%;
+    width: 32%;
     font-size: 20px;
-    margin-left:-145%;
+    float: right;
+    margin-right:15%;
 }
 
 .homeButton4 .btn{
-    width: 260%;
+    width: 32%;
     cursor: not-allowed;
     font-size: 20px;
-    margin-left:-260%;
+    float: right;
+    margin-right:15%;
 }
 
 .homeButton5 .btn{
-    width: 228%;
+    width: 32%;
     cursor: not-allowed;
     font-size: 20px;
-    margin-left:-215%;
+    float: right;
+    margin-right:15%;
 }
 
 
@@ -98,7 +102,7 @@
 
 .imageDelete img{
     width:150px;
-    height:auto;
+    height:100px;
 }
 
 .description{
@@ -114,6 +118,10 @@
     font-size: 16px;
 }
 
+.card-header{
+    font-size: 18px;
+}
+
 .listCustomer{
     display: flex;
     justify-content: space-evenly;
@@ -122,4 +130,113 @@
 .listUser{
     display:flex;
     justify-content: space-evenly;
+}
+
+
+
+footer {
+    font-family: sans-serif;
+    font-size: 16px; 
+    width: 100%;
+    color: rgb(70, 70, 70);
+    background: rgb(223, 223, 223);
+    bottom: 0;
+    padding :8px; 
+}
+
+
+.footerStart{
+    overflow:hidden;
+    padding:8px;
+}
+
+
+.contact{
+    float: left;
+    margin-left:7%;
+    margin-top:2px;
+}
+
+.whatsapp{
+    float: left;
+    margin-left:9%;
+}
+
+ .mail{
+    float: left;
+    margin-left:9%;
+    margin-top:2px;
+}
+
+.address{
+    float: left;
+    margin-left:9%;
+    margin-top:2px;
+}
+
+
+.footerBetween{
+    border-bottom: 2px solid #000;
+    margin-left:15px;
+    margin-right:15px;
+}
+
+
+.footerEnd{
+    overflow:hidden;
+    padding-top:8px;
+    padding-left:8px;
+    padding-right:8px;
+}
+
+.company{
+    float: left;
+    margin-left:14%;
+}
+
+.developed{
+    float: left;
+    margin-left:17%;
+}
+
+.RightsReserved{
+    float: left;
+    margin-left:17%;
+}
+
+
+
+
+.noCar{
+    font-size: 40px;
+    display:flex;
+    justify-content: center;
+}
+
+.card{  
+    margin-bottom:20px;
+}
+
+
+.google_maps{
+    position: relative;
+    height: 200px;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  margin-bottom: 40px;
+}
+
+.pagination{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    padding-bottom:20px;
 }

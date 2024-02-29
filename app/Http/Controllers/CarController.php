@@ -86,17 +86,19 @@ class CarController extends Controller
         //Verificacion si existe imagen a cargar
         if (request()->hasFile('image')){
 
-            $car->addMultipleMediaFromRequest(['image'])
-             ->each(function ($fileAdder) {
-                  $fileAdder->toMediaCollection('cars');
-              });
-              
+
+        $car->addMultipleMediaFromRequest(['image'])
+         ->each(function ($fileAdder) {
+              $fileAdder->toMediaCollection('cars');
+          });              
           }
+
+
 
         $car->save();
 
         //Redireccion de la pagina al inicio
-        return redirect()->route('home')->with(['message' => 'Vehiculo creado correctamente']);
+        return redirect()->route('car.list')->with(['message' => 'Vehiculo creado correctamente']);
     }
 
     public function update(Request $request)
@@ -110,7 +112,7 @@ class CarController extends Controller
         'year' => ['required','min:1','integer'],
         'color' => ['required','min:1', 'string', 'max:255'],
         'description' => ['required','min:1', 'string', 'max:255'],
-        'stock' => ['required','min:1','integer'],
+        'stock' => ['required','min:0','integer'],
         'price' => ['required','min:1','integer'],
     ] );
 
@@ -143,12 +145,14 @@ class CarController extends Controller
         //Verificacion si se selecciono la opcion de eliminar las fotos anteriormente cargadas
         if($option_Image=="Eliminar"){
             $car->clearMediaCollection('cars');
-        } 
+        }
 
         $car->addMultipleMediaFromRequest(['image'])
-         ->each(function ($fileAdder) {
-              $fileAdder->toMediaCollection('cars');
-          });
+        ->each(function ($fileAdder) {
+        $fileAdder->toMediaCollection('cars');
+      });
+
+
           
       }
 
@@ -160,11 +164,16 @@ class CarController extends Controller
 
     public function delete($id)
     {
+
+        $brand=Car::find($id)->brand->name;
+        $model=Car::find($id)->model;
+        $year=Car::find($id)->year;
+
         //Se consigue el objeto del Vehiculo con el Id seleccionado
         Car::with(['media'])->find($id)->delete();
 
         //Redireccion de la pagina al inicio
-        return redirect()->route('home')->with(['message' => 'El Vehiculo se ha eliminado correctamente']);
+        return redirect()->route('car.list')->with(['message' => 'El Vehiculo '.$brand.' '.$model.' ('.$year.') se ha eliminado correctamente']);
     }
 
     public function deleteImg($id,$idImg)

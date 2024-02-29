@@ -7,6 +7,7 @@ use App\Models\Car;
 use App\Models\Brand;
 use App\Models\Engine;
 use App\Models\Customer;
+use App\Models\User;
 use App\Models\Sale;
 
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -58,11 +59,14 @@ class SaleController extends Controller
         $sale->user_id=$user_id;
         $sale->status='Vendido';
 
+        $customer=Customer::find($customer_id);
+        $user=User::find($user_id);
+
         $car->update();
         $sale->save();
 
         //Redireccion de la pagina a la vista de Inicio
-        return redirect()->route('home')->with(['message' => 'Venta registrada correctamente']);
+        return redirect()->route('sale.list')->with(['message' => 'Vehiculo: '.$car->brand->name.' '.$car->model.' ('.$car->year.') fue vendido al cliente '.$sale->customer_id->name.' '.$sale->customer_id->surname.' por el vendedor '.$sale->user_id->name.' '.$sale->user_id->surname ]);
     }
     
     public function delete($idSale,$idCar)

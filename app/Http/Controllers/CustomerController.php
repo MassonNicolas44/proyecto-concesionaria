@@ -66,7 +66,7 @@ class CustomerController extends Controller
         $customer->save();
 
         //Redireccion de la pagina a la lista de Clientes
-        return redirect()->route('customer.list')->with(['message' => 'Cliente agrego correctamente']);
+        return redirect()->route('customer.list')->with(['message' => 'Cliente '.$name.' '.$surname.' se agrego correctamente']);
     }
 
     public function edit($id){
@@ -118,7 +118,7 @@ class CustomerController extends Controller
             $customer->update();
 
             //Redireccion de la pagina a la lista de Clientes
-            return redirect()->route('customer.list')->with(['message' => 'Cliente actualizado correctamente']);
+            return redirect()->route('customer.list')->with(['message' => 'Cliente '.$name.' '.$surname.' actualizado correctamente']);
 
     }
 
@@ -147,11 +147,15 @@ class CustomerController extends Controller
 
     public function delete($id)
     {
+
+        $name=Customer::find($id)->name;
+        $surname=Customer::find($id)->surname;
+
         //Se obtiene el objeto del Cliente con el Id a eliminar
         Customer::find($id)->delete();
 
         //Redireccion de la pagina a la lista de Clientes
-        return redirect()->route('customer.list')->with(['message' => 'El Cliente se ha eliminado correctamente']);
+        return redirect()->route('customer.list')->with(['message' => 'El Cliente '.$name.' '.$surname.' se ha eliminado correctamente']);
     }
 
     public function report()

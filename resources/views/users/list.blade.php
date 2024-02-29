@@ -6,14 +6,7 @@
         <div class="col-md-12">
             <div class="card">
                 
-                <div class="container-avatar">
-                    @if (session('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-        
-                    @endif
-                </div>
+@include('includes.message')
 
                     <div class="card-header">{{ __('Lista de Personal Administrativo') }}</div>
                         <div class="card-body">
@@ -73,4 +66,5 @@
         </div>
     </div>
 </div>
+@include('includes.footer')
 @endsection

@@ -6,14 +6,7 @@
 
     <div class="card">
 
-        <div class="container-avatar">
-                @if (session('message'))
-                    <div class="alert alert-success">
-                        {{ session('message') }}
-                    </div>
-       
-                @endif
-            </div>
+@include('includes.message')
 
         <div class="card pub_image">
             <div class="card-header">
@@ -31,16 +24,17 @@
                     @if(!empty($imageCar->media->first()))
                         <!-- Si no se ha seleccionada ninguna imagen, muestra la primera guardada en la Base de Datos -->
                         <!-- Caso contrario se muestra la imagen seleccionada -->
+
                         @if(empty($img))
-                            <img src="{{ $imageCar->media->first()->getUrl('thumb') }}" >
+                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$imageCar->media->first()->id.'/conversions/'.$imageCar->media->first()->name.'-thumb.jpg') }}" >
                         @else
-                            <?php 
-                                $img=strtolower(str_replace(" ", "-", $img));
+                            <?php               
+                                $img=strtr($img," ", "_");
                             ?>
-                            <img src="{{ asset ('storage/'.$idImg.'/conversions/'.$img.'-thumb.jpg') }}" >
+                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$idImg.'/conversions/'.$img.'-thumb.jpg') }}" />
                         @endif
                     @else
-                        <img src="{{ asset ('storage/noImagen.png') }}"  >
+                        <img src="{{ env('APP_URL','').('/storage/app/public/noImagen.png') }}" />
                     @endif
 
                 </div>
@@ -49,8 +43,9 @@
                                         
                     @foreach ($imageCar->media as $imgCar)
                         <div class="imageDelete">
+
                             <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
-                                <img src="{{ $imgCar->getUrl('thumb') }}"  data-img="{{ $imgCar->getUrl('thumb') }}"/>
+                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$imgCar->id.'/conversions/'.$imgCar->name.'-thumb.jpg') }}" />
                             </a>
                             <!-- Validacion de si existe Personal Administrativo Logeado -->
                             @if(Auth::user())
@@ -70,9 +65,14 @@
                         <li> <b> {{ 'Descripcion / Detalles: '}} </b> {{ $imageCar->description }} </li>
                         <li> <b> {{ 'Precio (Dolares): $ '}} </b> {{ $imageCar->price }} </li>
                     </ul>
+                    <br>
+                    Para realizar una consulta, haga <a href="https://api.whatsapp.com/send?phone=542284214417"> <b>Click Aqui</b> </a>
                 </div>
+
             </div>
         </div>
     </div>
 </div>
+@include('includes.footer')
+
 @endsection

@@ -26,7 +26,7 @@ class Sale extends Model
         //Relacion de muchos a uno
         public function customer()
         {
-            return $this->belongsTo('App\Models\customer', 'customer_id');
+            return $this->belongsTo('App\Models\Customer', 'customer_id');
         }
 
     use HasFactory;

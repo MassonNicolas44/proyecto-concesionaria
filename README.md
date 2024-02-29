@@ -4,7 +4,7 @@ Nombre del Proyecto: Concesionaria Tutankamon
 ------------------------------------------------------------------------------------------------------------
 
 Persona a cargo de la administracion y programacion del proyecto:  Masson Nicolas
-Link de la pagina de inicio: http://proyecto-concesionaria.com/home
+Link de la pagina de inicio: http://proyecto-concesionaria.com/public/home
 ------------------------------------------------------------------------------------------------------------
 
 Requisitos de desarrolo para la integracion:
@@ -81,6 +81,12 @@ Datos Adicionales:
 
 Clave de ingreso del administrador: Admin
 Contraseña: 123
+
+claves de prueba:
+
+pruebaAdmin - 123
+pruebaGerente - 123
+pruebaVendedor - 123
 
 ------------------------------------------------------------------------------------------------------------
 

@@ -48,7 +48,7 @@ class EngineController extends Controller
         $engine->save();
 
         //Redireccion de la pagina a la lista de Tipo de Motor
-        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor añadido correctamente']);
+        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor '.$description.' se añadido correctamente']);
     }
 
     public function update(Request $request)
@@ -69,6 +69,6 @@ class EngineController extends Controller
         $engine->update();
 
         //Redireccion de la pagina a la lista de Tipo de Motor
-        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor editado correctamente']);
+        return redirect()->route('engine.list')->with(['message' => 'Tipo de Motor '.$description.' fue editado correctamente']);
     }
 }

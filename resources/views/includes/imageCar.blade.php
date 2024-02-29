@@ -1,4 +1,3 @@
-@if($imageCar->stock>0)    
     <div class="card pub_image">
         
         <div class="card-header">
@@ -8,10 +7,11 @@
             <div class="image-container-home">
                 <!-- En caso que no existe imagen del vehiculo, se muestra una imagen con el cartel de "No image" -->
                 @if(!empty($imageCar->media->first()))
-                    <img src="{{ $imageCar->media->first()->getUrl('thumb') }}">
+                    <img src="{{ env('APP_URL','').('/storage/app/public/'.$imageCar->media->first()->id.'/conversions/'.$imageCar->media->first()->name.'-thumb.jpg') }}" >
                 @else
-                    <img src="{{ asset ('storage/noImagen.png') }}" >
+                    <img src="{{ env('APP_URL','').('/storage/app/public/noImagen.png') }}" >
                 @endif
+
             </div>
 
             <div class="homeButtonHome">
@@ -21,7 +21,7 @@
                         <a href="{{ route('car.detail',['id'=>$imageCar->id])}}" ="sucess" class="btn btn-info btn-sm">Ver Mas Detalles </a>
                     </div>
                     <div class="homeButton2">
-                        <a class="btn btn-success btn-sm disabled">No hay Stock</a>
+                        <a class="btn btn-success btn-sm disabled">Sin Stock</a>
                     </div>
                 @else
                     <div class="homeButton1">
@@ -49,4 +49,3 @@
             </div>
         </div> 
     </div>
-@endif

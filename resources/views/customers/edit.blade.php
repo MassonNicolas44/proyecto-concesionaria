@@ -6,15 +6,9 @@
         <div class="col-md-8">
             <div class="card">
 
-                <div class="container-avatar">
-                    @if (session('message'))
-                        <div class="alert alert-success">
-                            {{ session('message') }}
-                        </div>
-        
-                    @endif
-                </div>
-                <div class="card-header">{{ __('Modificar datos de Cliente') }}</div>
+@include('includes.message')
+
+                <div class="card-header">{{ __('Modificando el cliente: '.$customer->name.' '.$customer->surname) }}</div>
 
                 <div class="card-body">
                 <form method="POST" action="{{ route('user.update') }}">
@@ -161,4 +155,5 @@
         </div>
     </div>
 </div>
+@include('includes.footer')
 @endsection
