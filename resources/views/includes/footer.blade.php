@@ -8,15 +8,15 @@
              <strong>Datos de contacto</strong>      
         </div>
         <div class="whatsapp">
-            <img src="{{ env('APP_URL','').('/storage/app/public/logoWhatsapp.png') }}" style="width:35px;height:35px;" >
-            <strong>Whatsapp</strong>: <a href="https://api.whatsapp.com/send?phone=542284214417"> +54 2284214417 </a>
+            <img src="{{ env('APP_URL','').('storage/app/public/iconoWhatsapp.png') }}"  style="width:25px;height:25px;">
+            <strong>Whatsapp</strong>: <a href=""> Numero de la empresa</a>
         </div>
         <div class="mail">
-        <img src="{{ env('APP_URL','').('/storage/app/public/logoEmail.png') }}" style="width:28px;height:18px;margin-bottom:1px;" >
-            <strong>Correo</strong>: nicolasmasson@outlook.com.ar
+        <img src="{{ env('APP_URL','').('storage/app/public/iconoMail.png') }}" style="width:25px;height:25px;">
+            <strong>Correo</strong>:(Correo de la empresa)
         </div>
         <div class="address">
-            <img src="{{ env('APP_URL','').('/storage/app/public/logoUbicacion.png') }}" style="width:20px;height:20px;" >
+            <img src="{{ env('APP_URL','').('storage/app/public/iconoUbicacion.png') }}" style="width:25px;height:25px;" >
             <strong>Direccion</strong>: Olavarria, Buenos Aires, Argentina
         </div>
     </div>
@@ -26,7 +26,7 @@
 
     <div class="footerEnd">
         <div class="company">          
-             © 2024 Tutankamon SRL        
+             © 2024 ZentroCar SRL        
         </div>
         <div class="developed">
             Desarrollado por <strong> Nicolas Masson </strong>

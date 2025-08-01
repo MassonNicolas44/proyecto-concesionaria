@@ -66,7 +66,7 @@
                         <li> <b> {{ 'Precio (Dolares): $ '}} </b> {{ $imageCar->price }} </li>
                     </ul>
                     <br>
-                    Para realizar una consulta, haga <a href="https://api.whatsapp.com/send?phone=542284214417"> <b>Click Aqui</b> </a>
+                    Para realizar una consulta, haga <a href=""> <b>Click Aqui</b> </a>
                 </div>
 
             </div>
