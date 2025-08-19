@@ -79,14 +79,13 @@ Datos Adicionales:
 /Si un vehiculo o cliente quiere ser eliminado, no debe estar relacion con ninguna venta, caso contrario, solo se podra Deshabiltiar el mismo para que no pueda ser usado en el sistema.
 
 
-Clave de ingreso del administrador: Admin
+Clave de ingreso del administrador: pruebaAdmin
 Contraseña: 123
 
 claves de prueba:
 
-pruebaAdmin - 123
 pruebaGerente - 123
-pruebaVendedor - 123
+pruebaVentas - 123
 
 ------------------------------------------------------------------------------------------------------------
 
@@ -175,3 +174,6 @@ Se modifico y testeo el cambio de clave de acceso y/o contraseña
 Si el personal Administrativo no esta habilitado, no podra ingresar a ninguna solapa dentro del sistema
 Proyecto comentado y Codigo organizado
 Se agrego la validacion de valores unicos para los campos de las tablas
+
+18/08/25
+Se arreglo al modificar el precio de un vehiculo, no modifique tambien al venta realizada al mismo

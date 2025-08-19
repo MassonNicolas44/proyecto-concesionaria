@@ -57,6 +57,7 @@ class SaleController extends Controller
         $sale->customer_id=$customer_id;
         $sale->car_id=$car_id;
         $sale->user_id=$user_id;
+        $sale->price=$car->price;
         $sale->status='Vendido';
 
         $customer=Customer::find($customer_id);
@@ -66,7 +67,7 @@ class SaleController extends Controller
         $sale->save();
 
         //Redireccion de la pagina a la vista de Inicio
-        return redirect()->route('sale.list')->with(['message' => 'Vehiculo: '.$car->brand->name.' '.$car->model.' ('.$car->year.') fue vendido al cliente '.$sale->customer_id->name.' '.$sale->customer_id->surname.' por el vendedor '.$sale->user_id->name.' '.$sale->user_id->surname ]);
+        return redirect()->route('sale.list')->with(['message' => 'Vehiculo: '.$car->brand->name.' '.$car->model.' ('.$car->year.') fue vendido al cliente '.$sale->customer->name.' '.$sale->customer->surname.' por el vendedor '.$sale->user->name.' '.$sale->user->surname ]);
     }
     
     public function delete($idSale,$idCar)

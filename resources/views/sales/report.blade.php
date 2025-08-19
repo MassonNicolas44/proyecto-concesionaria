@@ -47,7 +47,7 @@ td {
                     <td>{{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}} ({{$sale->car->id}})</td>
                     <td>{{$sale->user->name}} {{$sale->user->surname}} ({{$sale->user->id}})</td>
                     <td>{{$sale->customer->name}} {{$sale->customer->surname}} ({{$sale->customer->id}})</td>
-                    <td>$ {{$sale->car->price}}</td>
+                    <td>$ {{$sale->price}}</td>
                     <td>{{$sale->status}}</td>
                     <td>  {{$sale->created_at->format('d-m-Y')}}  </td>
                 </tr>

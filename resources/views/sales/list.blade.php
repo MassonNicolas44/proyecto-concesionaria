@@ -35,7 +35,7 @@
                                         <td>{{$sale->user->name}} {{$sale->user->surname}} ({{$sale->user->id}})</td>
                                         <td>{{$sale->customer->name}} {{$sale->customer->surname}} ({{$sale->customer->id}})</td>
                                         <td>{{$sale->status}}</td>
-                                        <td>$ {{$sale->car->price}}</td>
+                                        <td>$ {{$sale->price}}</td>
                                         <td>{{$sale->created_at}}</td>
                                         <td>{{$sale->updated_at}}</td>
                                         <td>
