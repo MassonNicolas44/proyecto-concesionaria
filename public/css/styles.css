@@ -8,6 +8,11 @@
     height:auto;
 }
 
+body{
+    background-image: url('https://zentrocar.lovestoblog.com/storage/app/public/fondo.jpg');
+    background-size: 25rem;
+}
+
 .homeFilter{
     display:flex;
     justify-content: space-evenly;
