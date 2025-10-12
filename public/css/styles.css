@@ -147,6 +147,7 @@ footer {
     background: rgb(223, 223, 223);
     bottom: 0;
     padding :8px; 
+    position: absolute;
 }
 
 
