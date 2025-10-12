@@ -26,15 +26,15 @@
                         <!-- Caso contrario se muestra la imagen seleccionada -->
 
                         @if(empty($img))
-                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$imageCar->media->first()->id.'/conversions/'.$imageCar->media->first()->name.'-thumb.jpg') }}" >
+                            <img src="{{ env('APP_URL','').('../storage/app/public/'.$imageCar->media->sortBy('order_column')->first()->id.'/conversions/'.$imageCar->media->sortBy('order_column')->first()->name.'-thumb.jpg') }}" >
                         @else
                             <?php               
                                 $img=strtr($img," ", "_");
                             ?>
-                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$idImg.'/conversions/'.$img.'-thumb.jpg') }}" />
+                            <img src="{{ env('APP_URL','').('../storage/app/public/'.$idImg.'/conversions/'.$img.'-thumb.jpg') }}" />
                         @endif
                     @else
-                        <img src="{{ env('APP_URL','').('/storage/app/public/noImagen.png') }}" />
+                        <img src="{{ env('APP_URL','').('../storage/app/public/noImagen.png') }}" />
                     @endif
 
                 </div>
@@ -43,15 +43,18 @@
                                         
                     @foreach ($imageCar->media as $imgCar)
                         <div class="imageDelete">
-
                             <a href="{{ route('car.detail',['id'=>$imageCar->id,'idImg'=>$imgCar->id,'img'=>$imgCar->name])}}" ="sucess">
-                            <img src="{{ env('APP_URL','').('/storage/app/public/'.$imgCar->id.'/conversions/'.$imgCar->name.'-thumb.jpg') }}" />
+                            <img src="{{ env('APP_URL','').('../storage/app/public/'.$imgCar->id.'/conversions/'.$imgCar->name.'-thumb.jpg') }}" />
                             </a>
                             <!-- Validacion de si existe Personal Administrativo Logeado -->
                             @if(Auth::user())
                                 <a href="{{ route('image.deleteImg',['id'=>$imageCar->id,'idImg'=>$imgCar]) }}" ="sucess" class="btn btn-danger btn-sm"> Eliminar Foto</a>
+                                <br>
+                                <!-- Al hacer click se marca como principal -->
+                                <a href="{{ route('image.setMainImage', ['id' => $imageCar->id, 'mediaId' => $imgCar->id]) }}" ="success" class="btn btn-success btn-sm"> Imagen Principal  </a>
                             @endif
                         </div>
+                        
                     @endforeach
                 </div>
 

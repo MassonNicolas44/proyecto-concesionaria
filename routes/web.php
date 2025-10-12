@@ -66,6 +66,9 @@ Route::get('/customer/list/{id?}/{status?}', [App\Http\Controllers\CustomerContr
 //Informe
 Route::get('/customer/reportPDF', [App\Http\Controllers\CustomerController::class, 'report'])->name('customer.report');
 
+//Seleccion principal imagen
+Route::get('/cars/{id}/{mediaId}', [App\Http\Controllers\CarController::class, 'setMainImage'])->name('image.setMainImage');
+
 
 // ** Personal Administrativo **
 

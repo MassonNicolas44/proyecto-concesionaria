@@ -7,9 +7,9 @@
             <div class="image-container-home">
                 <!-- En caso que no existe imagen del vehiculo, se muestra una imagen con el cartel de "No image" -->
                 @if(!empty($imageCar->media->first()))
-                    <img src="{{ env('APP_URL','').('/storage/app/public/'.$imageCar->media->first()->id.'/conversions/'.$imageCar->media->first()->name.'-thumb.jpg') }}" >
+                    <img src="{{ env('APP_URL','').('../storage/app/public/'.$imageCar->media->sortBy('order_column')->first()->id.'/conversions/'.$imageCar->media->sortBy('order_column')->first()->name.'-thumb.jpg') }}" >
                 @else
-                    <img src="{{ env('APP_URL','').('/storage/app/public/noImagen.png') }}" >
+                    <img src="{{ env('APP_URL','').('../storage/app/public/noImagen.png') }}" >
                 @endif
 
             </div>

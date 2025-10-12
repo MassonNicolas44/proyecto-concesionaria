@@ -185,6 +185,30 @@ class CarController extends Controller
         return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'La foto se ha eliminado correctamente']);
     }
 
+        public function setMainImage($id, $mediaId)
+    {
+
+        $car=Car::with(['media'])->find($id);
+
+        $order=2;
+        // Reordenar las imágenes: la seleccionada pasa a ser la primera
+        foreach ($car['media'] as $media) {
+            if ($media->id == $mediaId) {
+                $media->order_column = 1;
+            } else {
+                $media->order_column = $order++;
+            }
+            $media->save();
+
+        }
+        // Reordenar correctamente en base a Spatie
+        $car->refresh();
+
+        //Redireccion de la pagina al vehiculo editado
+        return redirect()->route('car.detail',['id'=>$id])->with(['message' => 'Imagen principal actualizada correctamente']);
+
+    }
+
     public function list($id=null,$status=null){
 
         //Validacion para saber si debe actualizar el estatus del Vehiculo

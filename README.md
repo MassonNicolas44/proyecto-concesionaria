@@ -177,3 +177,6 @@ Se agrego la validacion de valores unicos para los campos de las tablas
 
 18/08/25
 Se arreglo al modificar el precio de un vehiculo, no modifique tambien al venta realizada al mismo
+
+12/10/25
+Se agrego la opcion de poder elegir la imagen principal de un vehiculo
