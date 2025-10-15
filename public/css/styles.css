@@ -8,8 +8,36 @@
     height:auto;
 }
 
+/* Evita que las tablas se desborden del contenedor */
+.table-responsive {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Asegura que la tabla ocupe el ancho completo del contenedor */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Evita que las columnas estrechas corten el texto o botones */
+table td, table th {
+  white-space: nowrap;
+}
+
+.table .btn {
+  min-width: 90px;        /* ancho uniforme */
+  margin: 2px;            /* espacio entre ellos */
+  text-align: center;
+  font-size: 14px;
+  white-space: nowrap;    /* evita que el texto salte de línea */
+}
+.table .btn {
+  width: 90px;
+}
+
 body{
-    background-image: url('https://zentrocar.lovestoblog.com/storage/app/public/fondo.jpg');
+    background-image: url('../../storage/app/public/fondo.jpg');
     background-size: 25rem;
 }
 

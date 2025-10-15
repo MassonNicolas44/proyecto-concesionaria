@@ -180,3 +180,6 @@ Se arreglo al modificar el precio de un vehiculo, no modifique tambien al venta 
 
 12/10/25
 Se agrego la opcion de poder elegir la imagen principal de un vehiculo
+
+14/10/25
+Se agrego equidad entre los botones de las tablas, ademas de hacerlas responsive
