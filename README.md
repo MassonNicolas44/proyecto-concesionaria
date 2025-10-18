@@ -183,3 +183,18 @@ Se agrego la opcion de poder elegir la imagen principal de un vehiculo
 
 14/10/25
 Se agrego equidad entre los botones de las tablas, ademas de hacerlas responsive
+
+15/10/25
+Al hacer click en "Generar Informe", abre una nueva pestaña, dejando abierta la anterior.
+Se agrego boton de limpiar en los filtros
+
+16/10/25
+Se añadieron filtros en la lista de vehiculos y en el reporte del mismo. Filtro por Marca-Motor-Año-Estado
+En el reporte de vehiculos se muestra la fecha,hora y en caso te haber algun filtro activo, se mostrara al cual es.
+Se modifico la zona horaria predeterminada a America/Argentina/Buenos_Aires
+
+17/10/25
+Se añadieron filtros en la lista de clientes y en el reporte del mismo. Filtro por Ciudad-Provincia-Estado
+En el reporte de clientes se muestra la fecha,hora y en caso te haber algun filtro activo, se mostrara al cual es.
+Se añadieron filtros en la lista de ventas y en el reporte del mismo. Filtro por Vendedor-Cliente-Estado-Fecha Inicio-Fecha Fin
+En el reporte de ventas se muestra la fecha,hora y en caso te haber algun filtro activo, se mostrara al cual es.

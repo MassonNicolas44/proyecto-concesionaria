@@ -12,7 +12,7 @@
                     <form method="GET" action="{{ route('home') }}">
                     @csrf
                         <div class="homeFilter">
-                            <label class="col-md-2 col-form-label text-md-center"><b>Filtrado:</b></label>
+                            <label class="col-md-2 col-form-label text-md-center"><b>Filtrar por:</b></label>
                             <label for="brand_id" class="col-md-0 col-form-label text-md-end">Marca</label>
                             <div>
                                 <select id="brand_id" class="form-control {{ $errors->has('brand_id') ? 'is-invalid' : '' }}" value="{{ old('brand_id') }}" name="brand_id"/>
@@ -39,6 +39,7 @@
                             
                             <div class="col-md-2">
                                 <input type="submit" class="btn btn-primary" value="Buscar">
+                                <a href="{{ route('car.list') }}" class="btn btn-success">Limpiar</a>
                             </div>
                         </div>
                     </form>

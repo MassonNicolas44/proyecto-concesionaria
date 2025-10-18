@@ -122,7 +122,7 @@ class CustomerController extends Controller
 
     }
 
-    public function list($id=null,$status=null){
+    public function list(Request $request,$id=null,$status=null){
 
         //Validacion para saber si debe actualizar el estatus del Cliente
         if($id!=null && $status!=null){
@@ -140,9 +140,23 @@ class CustomerController extends Controller
             $customer->update();
         }
 
-        //Ordena la tabla obtenida por el Nombre
-        $customers=Customer::orderBy('name','asc')->get(); 
-        return view('customers.list',['customers'=>$customers]);
+        //Se obtienen los valores
+        $citySearch=$request->input('city');
+        $provinceSearch=$request->input('province');   
+        $statusCustomerSearch=$request->input('statusCustomer');   
+
+        //Se obtiene el objeto Cliente y se filtra en caso que se haya seleccionado alguno
+        $customers=Customer::where('city','LIKE',$citySearch)
+            ->where('province','LIKE',$provinceSearch)
+            ->where('status','LIKE',$statusCustomerSearch)
+            ->orderBy('id','asc')->get();
+
+        //Orden la lista de Ciudades, Provincias y Estado del Cliente
+        $cities=Customer::select('city')->distinct()->orderBy('city','asc')->get();
+        $provinces=Customer::select('province')->distinct()->orderBy('province','asc')->get(); 
+        $statusCustomer=Customer::select('status')->distinct()->orderBy('status','asc')->get(); 
+
+        return view('customers.list', compact('customers' ,'cities','citySearch','provinces','provinceSearch','statusCustomer','statusCustomerSearch'));
     }
 
     public function delete($id)
@@ -158,10 +172,22 @@ class CustomerController extends Controller
         return redirect()->route('customer.list')->with(['message' => 'El Cliente '.$name.' '.$surname.' se ha eliminado correctamente']);
     }
 
-    public function report()
+    public function report(Request $request)
     {
-        $customers=Customer::orderBy('name','asc')->get();
-        $pdf=Pdf::loadView('customers.report',compact('customers'));
+
+        //Se obtienen los valores
+        $citySearch=$request->input('city');
+        $provinceSearch=$request->input('province');   
+        $statusCustomerSearch=$request->input('statusCustomer');    
+
+        //Se obtiene el objeto Cliente y se filtra en caso que se haya seleccionado alguno
+        $customers=Customer::where('city','LIKE',$citySearch)
+            ->where('province','LIKE',$provinceSearch)
+            ->where('status','LIKE',$statusCustomerSearch)
+            ->orderBy('id','asc')->get();
+        
+        $pdf=Pdf::loadView('customers.report',compact('customers','citySearch','provinceSearch','statusCustomerSearch'));
         return $pdf->stream('customer_report.pdf');
+        
     }
 }

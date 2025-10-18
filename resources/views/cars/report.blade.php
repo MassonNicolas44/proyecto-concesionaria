@@ -29,7 +29,21 @@ td {
 </style>
 
     <body>
-        <h4 class="text-center">Listado de Vehiculos</h4>
+        <h3 class="text-center">Listado de Vehiculos</h3>
+        <h5 class="text-right">Fecha: {{ now()->format('d/m/Y') }} | Hora:{{now()->format('H:i')}} Hs</h5> 
+        @if (!empty($brandSearch))
+            <h5 class="text-left">Marca:{{$brandSearch->name}} </h4> 
+        @endif
+        @if (!empty($engineSearch))
+            <h5 class="text-left">Motor:{{$engineSearch->description}} </h4> 
+        @endif
+        @if (!empty($yearSearch))
+            <h5 class="text-left">Año:{{$yearSearch}} </h4> 
+        @endif
+        @if (!empty($statusCarSearch))
+            <h5 class="text-left">Estado:{{$statusCarSearch}} </h4> 
+        @endif
+        <br>
         <table class="table-bordered table-striped">
             <thead>
                 <th>Id</th>

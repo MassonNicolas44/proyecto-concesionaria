@@ -29,7 +29,18 @@ td {
 </style>
 
     <body>
-        <h4 class="text-center">Listado de Clientes</h4>
+        <h3 class="text-center">Listado de Clientes</h3>
+        <h5 class="text-right">Fecha: {{ now()->format('d/m/Y') }} | Hora:{{now()->format('H:i')}} Hs</h5> 
+        @if (!empty($citySearch))
+            <h5 class="text-left">Ciudad:{{$citySearch}} </h4> 
+        @endif
+        @if (!empty($provinceSearch))
+            <h5 class="text-left">Provincia:{{$provinceSearch}} </h4> 
+        @endif
+        @if (!empty($statusCustomerSearch))
+            <h5 class="text-left">Estado:{{$statusCustomerSearch}} </h4> 
+        @endif
+        <br>
         <table class="table-bordered table-striped">
             <thead>
                 <th>Id</th>

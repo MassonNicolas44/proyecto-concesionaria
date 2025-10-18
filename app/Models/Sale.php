@@ -29,5 +29,16 @@ class Sale extends Model
             return $this->belongsTo('App\Models\Customer', 'customer_id');
         }
 
+        //Formateo de fecha
+        public function getCreatedAtAttribute($value)
+        {
+            return \Carbon\Carbon::parse($value)->format('d-m-Y H:i:s');
+        }
+        
+        public function getUpdatedAtAttribute($value)
+        {
+            return \Carbon\Carbon::parse($value)->format('d-m-Y H:i:s');
+        }
+
     use HasFactory;
 }

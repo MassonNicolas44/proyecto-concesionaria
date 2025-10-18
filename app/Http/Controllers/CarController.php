@@ -209,7 +209,7 @@ class CarController extends Controller
 
     }
 
-    public function list($id=null,$status=null){
+    public function list(Request $request,$id=null,$status=null){
 
         //Validacion para saber si debe actualizar el estatus del Vehiculo
         if($id!=null && $status!=null){
@@ -226,17 +226,50 @@ class CarController extends Controller
 
             $car->update();
         }
+        
+        //Se obtienen los valores
+        $brandSearch=$request->input('brand_id');
+        $engineSearch=$request->input('engine_id');   
+        $yearSearch=$request->input('year');
+        $statusCarSearch=$request->input('statusCar');   
 
-        //Se obtiene el objeto del Vehiculo y lo ordena por nombre
-        $cars=Car::orderBy('id','asc')->get(); 
+        //Se obtiene el objeto Vehiculo y se filtra en caso que se haya seleccionado alguno
+        $cars=Car::where('brand_id','LIKE',$brandSearch)
+            ->where('engine_id','LIKE',$engineSearch)
+            ->where('year','LIKE',$yearSearch)
+            ->where('status','LIKE',$statusCarSearch)
+            ->orderBy('id','asc')->get();
 
-        return view('cars.list', ['cars' => $cars]);
+        //Orden la lista de Marca, Tipo de Motor por Nombre, Año y Estado del vehiculo
+        $brands=Brand::orderBy('name','asc')->get();
+        $engines=Engine::orderBy('description','asc')->get(); 
+        $years=Car::select('year')->distinct()->orderBy('year','asc')->get(); 
+        $statusCar=Car::select('status')->distinct()->orderBy('status','asc')->get(); 
+        
+        return view('cars.list', compact('cars' ,'brands','brandSearch','engines','engineSearch','years','yearSearch','statusCar','statusCarSearch'));
     }
 
-    public function report()
+    public function report(Request $request)
     {
-        $cars=Car::all();
-        $pdf=Pdf::loadView('cars.report',compact('cars'));
+        
+        //Se obtienen los valores
+        $brandSearch=$request->input('brand_id');
+        $engineSearch=$request->input('engine_id');   
+        $yearSearch=$request->input('year');
+        $statusCarSearch=$request->input('statusCar');   
+
+        //Se obtiene el objeto Vehiculo y se filtra en caso que se haya seleccionado alguno
+        $cars=Car::where('brand_id','LIKE',$brandSearch)
+            ->where('engine_id','LIKE',$engineSearch)
+            ->where('year','LIKE',$yearSearch)
+            ->where('status','LIKE',$statusCarSearch)
+            ->orderBy('id','asc')->get();
+        
+        //Trae los nombres de los filtros
+        $brandSearch=Brand::find($brandSearch);
+        $engineSearch=Engine::find($engineSearch);
+
+        $pdf=Pdf::loadView('cars.report',compact('cars','brandSearch','engineSearch','yearSearch','statusCarSearch'));
         return $pdf->stream('car_report.pdf');
     }
 

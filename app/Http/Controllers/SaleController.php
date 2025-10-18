@@ -89,17 +89,82 @@ class SaleController extends Controller
         return redirect()->route('sale.list', ['sales' => $sales])->with(['message' => 'Venta anulada correctamente']);
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        $sales=Sale::all();
-        return view('sales.list', ['sales' => $sales]);
+        //Se obtienen los valores
+        $userSearch=$request->input('user_id');
+        $customerSearch=$request->input('customer_id');   
+        $statusSaleSearch=$request->input('statusSale');   
+        $dateIni=$request->input('dateIni');
+        $dateEnd=$request->input('dateEnd');
+        $dateNow=date('Y-m-d',strtotime(now()));
+
+        //Se obtiene el objeto Venta y se filtra en caso que se haya seleccionado alguno
+        $sales=Sale::where('user_id','LIKE',$userSearch)
+            ->where('customer_id','LIKE',$customerSearch)
+            ->where('status','LIKE',$statusSaleSearch);
+            
+        if (!empty($dateIni) && empty($dateEnd)) {
+            $sales = $sales->whereBetween('created_at', [$dateIni, $dateNow]);
+        } elseif (!empty($dateIni) && !empty($dateEnd)) {
+            $sales = $sales->whereBetween('created_at', [$dateIni, $dateEnd]);
+        }
+
+        $sales=$sales->orderBy('id','asc')->get();
+            
+        //Orden la lista de 
+        $users=User::select('id','name','surname')->distinct()->orderBy('name','asc')->get();
+        $customers=Customer::select('id','name','surname')->distinct()->orderBy('name','asc')->get();
+        $statusSale=Sale::select('status')->distinct()->orderBy('status','asc')->get(); 
+        
+        //Inicio de variable del precio total
+        $totalPrice=0;
+        
+        foreach($sales as $sale){
+            $totalPrice=$totalPrice+($sale->price);
+        }
+
+        return view('sales.list', compact('sales' ,'users','userSearch','customers','customerSearch','statusSale','statusSaleSearch','totalPrice'));
+    
     }
 
-    public function report()
+    public function report(Request $request)
     {
-        $sales=Sale::all();
-        $pdf=Pdf::loadView('sales.report',compact('sales'));
+
+        //Se obtienen los valores
+        $userSearch=$request->input('user_id');
+        $customerSearch=$request->input('customer_id');   
+        $statusSaleSearch=$request->input('statusSale');   
+        $dateIni=$request->input('dateIni');
+        $dateEnd=$request->input('dateEnd');   
+
+        //Se obtiene el objeto Venta y se filtra en caso que se haya seleccionado alguno
+        $sales=Sale::where('user_id','LIKE',$userSearch)
+            ->where('customer_id','LIKE',$customerSearch)
+            ->where('status','LIKE',$statusSaleSearch);
+            
+        if (!empty($dateIni) && empty($dateEnd)) {
+            $sales = $sales->whereBetween('created_at', [$dateIni, $dateNow]);
+        } elseif (!empty($dateIni) && !empty($dateEnd)) {
+            $sales = $sales->whereBetween('created_at', [$dateIni, $dateEnd]);
+        }
+
+        $sales=$sales->orderBy('id','asc')->get();
+        
+        //Inicio de variable del precio total
+        $totalPrice=0;
+        
+        foreach($sales as $sale){
+            $totalPrice=$totalPrice+($sale->price);
+        }
+        
+        //Trae los nombres de los filtros
+        $userSearch=User::find($userSearch);
+        $customerSearch=Customer::find($customerSearch);
+        
+        $pdf=Pdf::loadView('sales.report',compact('sales','userSearch','customerSearch','statusSaleSearch','totalPrice','dateIni','dateEnd'));
         return $pdf->stream('sale_report.pdf');
+        
     }
     
 

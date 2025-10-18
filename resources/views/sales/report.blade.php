@@ -29,15 +29,32 @@ td {
 </style>
     <body>
         <h3 class="text-center">Listado de Ventas</h3>
+        <h5 class="text-right">Fecha: {{ now()->format('d/m/Y') }} | Hora:{{now()->format('H:i')}} Hs</h5> 
+        @if (!empty($userSearch))
+            <h5 class="text-left">Vendedor:{{$userSearch->name}} {{$userSearch->surname}} </h4> 
+        @endif
+        @if (!empty($customerSearch))
+            <h5 class="text-left">Cliente:{{$customerSearch->name}} {{$customerSearch->surname}}</h4> 
+        @endif
+        @if (!empty($dateIni))
+            <h5 class="text-left">Desde:{{$dateIni}} </h4> 
+        @endif
+        @if (!empty($dateEnd))
+            <h5 class="text-left">Hasta:{{$dateEnd}} </h4> 
+        @endif
+        @if (!empty($statusSaleSearch))
+            <h5 class="text-left">Estado:{{$statusSaleSearch}} </h4> 
+        @endif
+        <br>
         <table class="table-bordered table-striped">
             <thead>
                 <th>Id</th>
                 <th>Vehiculo</th>
                 <th>Vendedor</th>
                 <th>Cliente</th>
-                <th>Precio</th>
-                <th>Estado</th>
                 <th>Fecha Compra</th>
+                <th>Estado</th>
+                <th>Precio</th>
             </thead>
 
             <tbody>
@@ -47,12 +64,14 @@ td {
                     <td>{{$sale->car->brand->name}} {{$sale->car->model}} {{$sale->car->year}} ({{$sale->car->id}})</td>
                     <td>{{$sale->user->name}} {{$sale->user->surname}} ({{$sale->user->id}})</td>
                     <td>{{$sale->customer->name}} {{$sale->customer->surname}} ({{$sale->customer->id}})</td>
-                    <td>$ {{$sale->price}}</td>
+                    <td>{{$sale->created_at}}</td>
                     <td>{{$sale->status}}</td>
-                    <td>  {{$sale->created_at->format('d-m-Y')}}  </td>
+                    <td>$ {{$sale->price}}</td>
                 </tr>
                 @endforeach
             </tbody>
+            <td COLSPAN=6><h5>Ventas Totales<h5></td>
+            <td><h5>{{$totalPrice}} $<h5></td>
         </table>
 
         <script type="text/php">
