@@ -4,7 +4,7 @@ Nombre del Proyecto: Concesionaria ZentroCar
 ------------------------------------------------------------------------------------------------------------
 
 Persona a cargo de la administracion y programacion del proyecto:  Masson Nicolas
-Link de la pagina de inicio: https://zentrocar.lovestoblog.com
+Link de la pagina de inicio: https://nicolasmasson.tech/zentrocar.html
 ------------------------------------------------------------------------------------------------------------
 
 Requisitos de desarrolo para la integracion:
